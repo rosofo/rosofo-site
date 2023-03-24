@@ -1,5 +1,5 @@
 import { css, html, LitElement } from "lit";
-import { customElement, state } from "lit/decorators.js";
+import { customElement } from "lit/decorators.js";
 
 @customElement("nav-breadcrumbs")
 export class NavBreadcrumbs extends LitElement {
