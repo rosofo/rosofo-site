@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+:root {
+    --magenta-haze: #985277ff;
+    --paynes-gray: #385f71ff;
+    --misty-rose: #f5e3e0ff;
+    --orchid-pink: #e8b4bcff;
+    --licorice: #1a090dff;
+
+    --accent: var(--paynes-gray);
+    --text: var(--licorice);
+    
+    font-family: 'Catamaran', sans-serif;
+}
+img {
+    max-inline-size: 100%;
+    block-size: auto;
+}
+
+#site-icon {
+    width: 4rem;
+}
+
+header {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0rem 0rem 0.3rem var(--accent);
+}
