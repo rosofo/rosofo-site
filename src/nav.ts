@@ -9,11 +9,15 @@ import { consumeStore } from "./zustand";
 type NavState = {
   mobileMenuOpen: boolean;
   toggle: () => void;
+  close: () => void;
 };
 const navStore = createStore<NavState>((set) => ({
   mobileMenuOpen: false,
   toggle: () =>
     set(({ mobileMenuOpen }) => ({ mobileMenuOpen: !mobileMenuOpen })),
+  close() {
+    set(() => ({ mobileMenuOpen: false }));
+  },
 }));
 
 @customElement("nav-breadcrumbs")
@@ -165,6 +169,24 @@ export class NavMenu extends LitElement {
   @consumeStore(navStore)
   navState?: NavState;
 
+  handleLocationChange = () => {
+    this.navState?.close();
+  };
+  connectedCallback() {
+    super.connectedCallback();
+    window.addEventListener(
+      "vaadin-router-location-changed",
+      this.handleLocationChange
+    );
+  }
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    window.removeEventListener(
+      "vaadin-router-location-changed",
+      this.handleLocationChange
+    );
+  }
+
   render() {
     return html`
       <nav class=${classMap({ hide: !this.navState?.mobileMenuOpen })}>
@@ -172,7 +194,9 @@ export class NavMenu extends LitElement {
           ${views.map((route) => {
             const name = route.name ?? route.path;
             const href = router.urlForPath(route.path);
-            return html`<li><a href=${href}>${name}</a></li>`;
+            return html`<li style=${styleMap({ fontSize: "7cqi" })}>
+              <a href=${href}>${name}</a>
+            </li>`;
           })}
         </ul>
       </nav>
@@ -180,18 +204,34 @@ export class NavMenu extends LitElement {
   }
 
   static styles = css`
-    nav {
-      position: absolute;
-      background-color: var(--misty-rose);
+    :host {
+      display: block;
       width: 100%;
       height: 100%;
-      transition: opacity 0.1s, height 0.05s, width 0.05s;
+      container-type: size;
     }
-    .hide {
-      opacity: 0;
-      pointer-events: none;
-      width: 0%;
-      height: 0%;
+    nav {
+      background-color: var(--orchid-pink);
+      width: 100%;
+      height: 100%;
+      padding: 1rem;
+    }
+    ul {
+      padding: 0;
+    }
+    @media only screen and (max-width: 768px) {
+      :host {
+        position: absolute;
+      }
+      nav {
+        transition: opacity 0.1s, height 0.05s, width 0.05s;
+      }
+      .hide {
+        opacity: 0;
+        pointer-events: none;
+        width: 0%;
+        height: 0%;
+      }
     }
 
     li {

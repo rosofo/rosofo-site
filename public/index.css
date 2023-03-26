@@ -1,12 +1,19 @@
 body {
     margin: 0;
     padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    
+    background-image: radial-gradient(farthest-corner at 2rem 2rem, var(--magenta-haze) 0, var(--orchid-pink) 100%);
 }
 :root {
     --magenta-haze: #985277ff;
     --paynes-gray: #385f71ff;
     --misty-rose: #f5e3e0ff;
     --orchid-pink: #e8b4bcff;
+    --orchid-pink-trans: #e8b4bc44;
     --licorice: #1a090dff;
 
     --accent: var(--paynes-gray);
@@ -28,4 +35,25 @@ header {
     display: flex;
     align-items: center;
     box-shadow: 0rem 0rem 0.3rem var(--accent);
+    background-color: var(--misty-rose);
+}
+
+main {
+    display: flex;
+    align-items: stretch;
+    flex: 1;
+}
+
+main aside {
+    flex: 1;
+}
+
+main article {
+    flex: 3;
+}
+
+@media only screen and (max-width: 768px) {
+    main aside {
+        flex: 0 0 0;
+    }
 }

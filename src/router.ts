@@ -2,7 +2,14 @@ import { Route, Router as VRouter } from "@vaadin/router";
 
 export const router = new VRouter(document.getElementById("router-outlet"));
 export const views: Route[] = [
-  { name: "Example", path: "/example", component: "foo-bar" },
+  {
+    name: "Stresswaves",
+    path: "/stresswaves",
+    component: "stress-waves",
+    action: async () => {
+      await import("./views/stresswaves");
+    },
+  },
 ];
 router.setRoutes([
   ...views,
