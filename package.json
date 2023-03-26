@@ -14,8 +14,10 @@
   },
   "dependencies": {
     "@lit-labs/context": "^0.3.0",
+    "@lit/reactive-element": "^1.6.1",
     "@vaadin/router": "^1.7.5",
     "lit": "^2.7.0",
-    "vite-plugin-pwa": "^0.14.6"
+    "vite-plugin-pwa": "^0.14.6",
+    "zustand": "^4.3.6"
   }
 }

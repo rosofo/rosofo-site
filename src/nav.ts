@@ -1,7 +1,20 @@
 import { css, html, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { styleMap } from "lit/directives/style-map.js";
+import { classMap } from "lit/directives/class-map.js";
 import { router, views } from "./router";
+import { createStore } from "zustand/vanilla";
+import { consumeStore } from "./zustand";
+
+type NavState = {
+  mobileMenuOpen: boolean;
+  toggle: () => void;
+};
+const navStore = createStore<NavState>((set) => ({
+  mobileMenuOpen: false,
+  toggle: () =>
+    set(({ mobileMenuOpen }) => ({ mobileMenuOpen: !mobileMenuOpen })),
+}));
 
 @customElement("nav-breadcrumbs")
 export class NavBreadcrumbs extends LitElement {
@@ -103,9 +116,19 @@ export class NavBreadcrumbs extends LitElement {
 
 @customElement("menu-button")
 export class MenuButton extends LitElement {
+  @consumeStore(navStore)
+  navState?: NavState;
+
   render() {
     return html`<a class="desktop" href="/"><slot name="desktop-icon"></slot></a
-      ><a class="mobile" href="#menu"><slot name="mobile-icon"></slot></a>`;
+      ><button
+        class="mobile ${classMap({
+          active: Boolean(this.navState?.mobileMenuOpen),
+        })}"
+        @click=${() => this.navState?.toggle()}
+      >
+        <slot name="mobile-icon"></slot>
+      </button>`;
   }
 
   static styles = css`
@@ -127,15 +150,24 @@ export class MenuButton extends LitElement {
       margin: 0;
       padding: 0;
       background: none;
+      transition: all 0.2s;
+    }
+
+    .active {
+      transform: scale(90%);
+      filter: hue-rotate(90deg);
     }
   `;
 }
 
 @customElement("nav-menu")
 export class NavMenu extends LitElement {
+  @consumeStore(navStore)
+  navState?: NavState;
+
   render() {
     return html`
-      <nav>
+      <nav class=${classMap({ hide: !this.navState?.mobileMenuOpen })}>
         <ul>
           ${views.map((route) => {
             const name = route.name ?? route.path;
@@ -148,21 +180,9 @@ export class NavMenu extends LitElement {
   }
 
   static styles = css`
-    nav {
+    .hide {
       opacity: 0;
       pointer-events: none;
-    }
-
-    @media only screen and (min-width: 768px) {
-      nav {
-        opacity: 1;
-        pointer-events: initial;
-      }
-    }
-
-    :host-context(:target) nav {
-      opacity: 1;
-      pointer-events: initial;
     }
   `;
 }
