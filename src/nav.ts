@@ -180,9 +180,29 @@ export class NavMenu extends LitElement {
   }
 
   static styles = css`
+    nav {
+      position: absolute;
+      background-color: var(--misty-rose);
+      width: 100%;
+      height: 100%;
+      transition: opacity 0.1s, height 0.05s, width 0.05s;
+    }
     .hide {
       opacity: 0;
       pointer-events: none;
+      width: 0%;
+      height: 0%;
+    }
+
+    li {
+      list-style: none;
+    }
+    li::before {
+      margin: 0;
+    }
+
+    a {
+      text-decoration: none;
     }
   `;
 }
