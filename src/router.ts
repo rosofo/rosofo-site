@@ -10,6 +10,14 @@ export const views: Route[] = [
       await import("./views/stresswaves");
     },
   },
+  {
+    name: "Hash Trees",
+    path: "/hash-trees",
+    component: "hash-trees-view",
+    action: async () => {
+      await import("./views/hash-trees");
+    },
+  },
 ];
 router.setRoutes([
   ...views,
