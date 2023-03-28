@@ -18,6 +18,14 @@ export const views: Route[] = [
       await import("./views/hash-trees");
     },
   },
+  {
+    name: "Pure D3",
+    path: "/pure-d3",
+    component: "pure-d3",
+    action: async () => {
+      await import("./views/pure-d3");
+    },
+  },
 ];
 router.setRoutes([
   ...views,

@@ -40,7 +40,7 @@ export class PText extends LitElement {
 
   static styles = css`
     p {
-      font-size: 2rem;
+      font-size: 4cqi;
     }
   `;
 }

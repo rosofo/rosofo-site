@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 body {
     margin: 0;
     padding: 0;
@@ -50,6 +53,7 @@ main aside {
 
 main article {
     flex: 3;
+    margin: 1rem;
 }
 
 @media only screen and (max-width: 768px) {
