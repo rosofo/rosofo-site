@@ -21,11 +21,13 @@ export class HashTreesView extends LitElement {
 
   render() {
     return html`
-      <heading>
+      <header>
         <h-title l="1">Hash Trees</h-title>
-      </heading>
+      </header>
       <section>
-        <label for="contents">Text content to build a tree from</label>
+        <label for="contents"
+          ><p-text>Text content to build a tree from</p-text></label
+        >
         <textarea
           style="display: block;"
           name="contents"
@@ -42,9 +44,9 @@ export class HashTreesView extends LitElement {
         />
       </section>
       <section>
-        <heading>
+        <header>
           <h-title l="3">Visualisation</h-title>
-        </heading>
+        </header>
         <tree-vis .tree=${buildHashTree(this.text, this.chunkSize)}></tree-vis>
       </section>
     `;
