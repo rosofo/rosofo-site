@@ -223,6 +223,7 @@ export class NavMenu extends LitElement {
     @media only screen and (max-width: 768px) {
       :host {
         position: absolute;
+        z-index: 1;
       }
       nav {
         transition: opacity 0.1s, height 0.05s, width 0.05s;
