@@ -224,9 +224,15 @@ export class NavMenu extends LitElement {
       :host {
         position: absolute;
         z-index: 1;
+        pointer-events: none;
       }
       nav {
         transition: opacity 0.1s, height 0.05s, width 0.05s;
+      }
+
+      nav {
+        pointer-events: initial;
+        opacity: 1;
       }
       .hide {
         opacity: 0;

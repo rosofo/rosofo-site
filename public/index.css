@@ -4,12 +4,12 @@
 body {
     margin: 0;
     padding: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: stretch;
+    min-height: 100vh;
+    overflow: scroll;
     
     background-image: radial-gradient(farthest-corner at 2rem 2rem, var(--magenta-haze) 0, var(--orchid-pink) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 :root {
     --magenta-haze: #985277ff;
@@ -34,6 +34,9 @@ img {
 }
 
 header {
+    position: sticky;
+    top: 0px;
+    z-index: 1;
     padding: 0.5rem;
     display: flex;
     align-items: center;
@@ -53,11 +56,22 @@ main aside {
 
 main article {
     flex: 3;
-    margin: 1rem;
+    padding: 1rem;
 }
 
 @media only screen and (max-width: 768px) {
+    header {
+        height: 2rem;
+    }
+    #site-icon {
+        height: 1.5rem;
+        width: initial;
+    }
+    main {
+        display: block;
+    }
     main aside {
         flex: 0 0 0;
+        height: 0;
     }
 }
