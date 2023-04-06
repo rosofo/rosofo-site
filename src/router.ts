@@ -26,6 +26,14 @@ export const views: Route[] = [
       await import("./views/pure-d3");
     },
   },
+  {
+    name: "MaroMarket",
+    path: "/maro-market",
+    component: "maro-market",
+    action: async () => {
+      await import("./views/maro");
+    },
+  },
 ];
 router.setRoutes([
   ...views,

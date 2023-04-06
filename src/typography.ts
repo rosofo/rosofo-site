@@ -23,11 +23,11 @@ export class Title extends LitElement {
       font-family: "Averia Serif Libre", serif;
     }
     h2 {
-      font-size: 4.5cqi;
+      font-size: 4.2cqi;
       font-family: "Sarina", cursive;
     }
     h3 {
-      font-size: 4.2cqi;
+      font-size: 4.1cqi;
     }
   `;
 }

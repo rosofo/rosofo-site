@@ -3,43 +3,15 @@ import * as d3 from "d3";
 import { css, html, LitElement, PropertyValueMap } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import { createRef, ref } from "lit/directives/ref.js";
-import produce from "immer";
 
-type Tree = { id: number; parentId?: number }[];
-function joinEdges(svg: SVGElement, tree: HierarchyPointNode<unknown>) {
-  return d3
-    .select(svg)
-    .selectAll("path")
-    .data(tree)
-    .join("path")
-    .attr(
-      "d",
-      (d) =>
-        d.parent &&
-        d3.link(d3.curveBumpX)({
-          target: [d.y, d.x],
-          source: [d.parent.y, d.parent.x],
-        })
-    )
-    .attr("stroke", "lightblue")
-    .attr("stroke-width", "0.1")
-    .attr("fill", "none");
-}
-
-@customElement("pure-d3")
-export class PureD3 extends LitElement {
+@customElement("graph-vis")
+export class GraphVis extends LitElement {
   ref = createRef<SVGElement>();
   zoom?: d3.ZoomBehavior<SVGElement, HierarchyPointNode<unknown>>;
   transitions: Promise<void>[] = [];
 
-  tree: Tree = [
-    { id: 1 },
-    { id: 2, parentId: 1 },
-    { id: 3, parentId: 1 },
-    { id: 4, parentId: 3 },
-    { id: 5, parentId: 3 },
-  ];
   select(svg: SVGElement) {
+    if (!this.tree || !this.tree.length) return;
     const t = d3.tree().size([20, 20])(d3.stratify()(this.tree));
     const nodes = this.joinNodes(svg, t);
 
@@ -115,15 +87,11 @@ export class PureD3 extends LitElement {
       .on("click", (e, d) => {
         this.transitions.push(this.resetZoom());
         this.transitionsEnd().then(() => {
-          this.tree = produce((tree) =>
-            d.descendants().forEach((remove) => {
-              const index = tree.findIndex((node) => node.id === remove.id);
-              if (index !== undefined) {
-                tree.splice(index, 1);
-              }
+          this.dispatchEvent(
+            new CustomEvent("node-click", {
+              detail: d as HierarchyPointNode<Tree[0]>,
             })
-          )(this.tree);
-          this.select(svg);
+          );
         });
       });
   }
@@ -171,28 +139,26 @@ export class PureD3 extends LitElement {
     if (this.ref.value) {
       const rect = this.ref.value!.getBoundingClientRect();
       this.select(this.ref.value);
-      if (!this.zoom) {
-        this.zoom = d3.zoom();
-        this.zoom
-          .on("zoom", ({ transform }) =>
-            d3
-              .select(this.ref.value!)
-              .selectAll("*")
-              .attr(
-                "transform",
-                `translate(${transform.x}, ${transform.y}) scale(${transform.k})`
-              )
-          )
-          .extent([
-            [0, 0],
-            [rect.x, rect.y],
-          ])
-          .translateExtent([
-            [0, 0],
-            [rect.x, rect.y],
-          ]);
-        d3.select(this.ref.value).call(this.zoom);
-      }
+      this.zoom = d3.zoom();
+      this.zoom
+        .on("zoom", ({ transform }) =>
+          d3
+            .select(this.ref.value!)
+            .selectAll("*")
+            .attr(
+              "transform",
+              `translate(${transform.x}, ${transform.y}) scale(${transform.k})`
+            )
+        )
+        .extent([
+          [0, 0],
+          [rect.x, rect.y],
+        ])
+        .translateExtent([
+          [0, 0],
+          [rect.x, rect.y],
+        ]);
+      d3.select(this.ref.value).call(this.zoom);
     }
   }
   zoomNode(
