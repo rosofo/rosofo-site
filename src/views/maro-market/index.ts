@@ -1,10 +1,10 @@
 import { html, LitElement, PropertyValueMap } from "lit";
-import { customElement } from "lit/decorators.js";
-import "../components/tree-vis";
+import { customElement, state } from "lit/decorators.js";
 import * as d3 from "d3";
 import { createRef, ref } from "lit/directives/ref.js";
 import { range } from "d3";
 import { maxBy, uniqueId } from "lodash";
+import produce from "immer";
 
 const itemList = `
 Central offices 6/8/74 in custody within portfolios, certificate 149503.
@@ -38,17 +38,36 @@ And more smaller things and objects
 @customElement("maro-market")
 export class MaroMarket extends LitElement {
   ref = createRef<SVGElement>();
+  worker?: Worker;
+
+  @state()
+  modelState: any = [];
+
+  @state()
+  chars = Object.fromEntries(
+    Object.values(CharType).map((c) => [c, { name: c, weight: Math.random() }])
+  );
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.worker = new Worker(new URL("./learning.worker.ts", import.meta.url), {
+      type: "module",
+    });
+    this.worker?.addEventListener("message", (e) => (this.modelState = e.data));
+  }
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.worker?.terminate();
+  }
 
   updated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ) {
     super.updated(_changedProperties);
+    this.ref.value!.innerHTML = "";
     const r = new BasicRenderer();
     const p = new BasicPieceGen();
-    const e = new BasicElemGen([
-      { name: CharType.Size, weight: 1 },
-      { name: CharType.Brilliance, weight: 0.2 },
-    ]);
+    const e = new BasicElemGen(Object.values(this.chars));
     const parent = e.genNode();
     parent.children = [e.genNode(), e.genNode(), e.genNode()];
     const g = r.render(this.ref.value!, parent);
@@ -64,12 +83,33 @@ export class MaroMarket extends LitElement {
           built-in</h-title
         >
       </header>
+      <form>
+        ${Object.values(CharType).map(
+          (c) => html`
+            <label for="${c}">${c}</label>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.05"
+              @input=${(e) =>
+                (this.chars = produce((chars) => {
+                  chars[c] = {
+                    name: c,
+                    weight: parseFloat(e.currentTarget.value),
+                  };
+                })(this.chars))}
+            />
+          `
+        )}
+      </form>
       <svg
         viewBox="0 0 240 160"
         width="600"
         height="400"
         ${ref(this.ref)}
       ></svg>
+      <p>${this.modelState}</p>
     `;
   }
 }
@@ -137,7 +177,7 @@ class BasicElemGen implements ElemGen {
       const strength = Math.random();
       const chars = this.characteristicWeights.map(({ name, weight }) => ({
         name,
-        strength: strength > weight ? strength * (1 - weight) : strength,
+        strength: strength * weight,
       }));
       aspects.push({ name: aspectType, characteristics: chars });
     }

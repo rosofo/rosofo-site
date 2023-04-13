@@ -4,7 +4,7 @@ import { LitElement, html, svg, SVGTemplateResult, css } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import { buildHashTree, HashTree } from "./hash-tree";
 
-@customElement("hash-trees-view")
+@customElement("hash-trees")
 export class HashTreesView extends LitElement {
   handleBuild(event: Event) {
     this.text = (event.currentTarget as HTMLTextAreaElement).value;

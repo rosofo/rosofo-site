@@ -1,10 +1,11 @@
 import { css, html, LitElement } from "lit";
-import { customElement, state } from "lit/decorators.js";
+import { property, customElement, state } from "lit/decorators.js";
 import { styleMap } from "lit/directives/style-map.js";
 import { classMap } from "lit/directives/class-map.js";
 import { router, views } from "./router";
 import { createStore } from "zustand/vanilla";
 import { consumeStore } from "./zustand";
+import { Route } from "@vaadin/router";
 
 type NavState = {
   mobileMenuOpen: boolean;
@@ -190,15 +191,7 @@ export class NavMenu extends LitElement {
   render() {
     return html`
       <nav class=${classMap({ hide: !this.navState?.mobileMenuOpen })}>
-        <ul>
-          ${views.map((route) => {
-            const name = route.name ?? route.path;
-            const href = router.urlForPath(route.path);
-            return html`<li style=${styleMap({ fontSize: "7cqi" })}>
-              <a href=${href}>${name}</a>
-            </li>`;
-          })}
-        </ul>
+        <link-list .routes=${views}></link-list>
       </nav>
     `;
   }
@@ -216,9 +209,6 @@ export class NavMenu extends LitElement {
       height: 100%;
       padding: 1rem;
       box-sizing: border-box;
-    }
-    ul {
-      padding: 0;
     }
     @media only screen and (max-width: 768px) {
       :host {
@@ -241,7 +231,35 @@ export class NavMenu extends LitElement {
         height: 0%;
       }
     }
+  `;
+}
 
+@customElement("link-list")
+export class LinkList extends LitElement {
+  @property({ type: Array })
+  routes?: Route[];
+
+  render() {
+    if (this.routes)
+      return html`
+        <ul>
+          ${this.routes.map((route) => {
+            const name = route.name ?? route.path;
+            const href = router.urlForPath(route.path);
+            return html`<li style=${styleMap({ fontSize: "7cqi" })}>
+              <a href=${href}>${name}</a>
+              <link-list .routes=${route.children}></link-list>
+            </li>`;
+          })}
+        </ul>
+      `;
+    else return null;
+  }
+
+  static styles = css`
+    link-list {
+      margin: 3rem;
+    }
     li {
       list-style: none;
     }
@@ -251,6 +269,9 @@ export class NavMenu extends LitElement {
 
     a {
       text-decoration: none;
+    }
+    ul {
+      padding: 0;
     }
   `;
 }

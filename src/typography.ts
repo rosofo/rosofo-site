@@ -19,15 +19,15 @@ export class Title extends LitElement {
 
   static styles = css`
     h1 {
-      font-size: 5cqi;
+      font-size: 3cqi;
       font-family: "Averia Serif Libre", serif;
     }
     h2 {
-      font-size: 4.2cqi;
+      font-size: 2.2cqi;
       font-family: "Sarina", cursive;
     }
     h3 {
-      font-size: 4.1cqi;
+      font-size: 2.1cqi;
     }
   `;
 }
