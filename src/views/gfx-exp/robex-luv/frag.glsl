@@ -4,6 +4,7 @@ uniform int u_height;
 
 float blockSize = 1.0f;
 int blocks = 1;
+int DEBUG = 1;
 
 bool isBlock(vec2 coord, int index) {
     float min = blockSize * float(index);
