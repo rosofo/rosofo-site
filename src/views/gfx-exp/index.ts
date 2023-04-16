@@ -27,9 +27,9 @@ export class GfxExp extends LitElement {
 export class GfxNav extends LitElement {
   @state()
   routes: Route[] = [];
-  setRoutes() {
+  setRoutes = () => {
     this.routes = router.location.route?.children ?? [];
-  }
+  };
   connectedCallback(): void {
     window.addEventListener("vaadin-router-location-changed", this.setRoutes);
   }
