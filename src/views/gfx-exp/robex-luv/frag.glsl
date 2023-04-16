@@ -4,7 +4,6 @@ uniform int u_height;
 
 float blockSize = 1.0f;
 int blocks = 1;
-int DEBUG = 1;
 
 bool isBlock(vec2 coord, int index) {
     float min = blockSize * float(index);
@@ -36,17 +35,5 @@ vec4 setPixel(vec4 value) {
 
 void main() {
     vec4 data = texture2D(u_texture, gl_FragCoord.xy);
-    
-    #if DEBUG
-    vec4 outDebugColor;
-    #else
-    
-    #if DEBUG
-    outDebugColor = vec4(0.5f) * float(isBlock(gl_FragCoord.xy, 0));
-    #else
-    
-    #if DEBUG
-    gl_FragColor = outDebugColor;
-    #else
-    #endif
+    gl_FragColor = data;
 }
