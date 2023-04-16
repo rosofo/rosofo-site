@@ -3,7 +3,7 @@ uniform int u_width;
 uniform int u_height;
 
 vec2 toIntCoord(vec2 fragCoord) {
-    vec2 intCoord = (fragCoord * float(u_width)) - 0.5f;
+    vec2 intCoord = (fragCoord * vec2(float(u_width), float(u_height))) - 0.5f;
     return vec2(int(intCoord.x), int(intCoord.y));
 }
 
