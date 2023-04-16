@@ -12,5 +12,5 @@ void main() {
     
     vec4 new_a = float(is_a) * (data + 0.01f);
     
-    gl_FragColor = texture2D(u_texture, vec2(0.0f, 0.0f));
+    gl_FragColor = float(!is_a) * texture2D(u_texture, vec2(0.0f, 0.0f)) + new_a;
 }
