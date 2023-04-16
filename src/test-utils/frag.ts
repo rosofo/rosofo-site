@@ -9,7 +9,7 @@ export function extractGlslFunction(frag: string, name: string) {
   visit(ast, {
     function: {
       enter: (p) => {
-        if (p.key === name) {
+        if (p.node.prototype.header.name.identifier === name) {
           func = p.node;
         }
       },
