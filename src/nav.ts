@@ -201,10 +201,10 @@ export class NavMenu extends LitElement {
       display: block;
       width: 100%;
       height: 100%;
-      container-type: size;
     }
     nav {
       background-color: var(--orchid-pink);
+      container-type: size;
       width: 100%;
       height: 100%;
       padding: 1rem;
