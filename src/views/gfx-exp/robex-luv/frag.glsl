@@ -2,6 +2,8 @@ uniform sampler2D u_texture;
 uniform int u_width;
 uniform int u_height;
 
+layout(origin_upper_left, pixel_center_integer) in vec4 gl_FragCoord;
+
 vec2 toIntCoord(vec2 fragCoord) {
     vec2 intCoord = (fragCoord * vec2(float(u_width), float(u_height)));
     return vec2(int(intCoord.x), int(intCoord.y));
