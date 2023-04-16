@@ -4,7 +4,7 @@ import glsl from "glslify";
 
 test("isBlock can be used to set a single value", async () => {
   const result = glsl`
-  #pragma glslify: isBlock = require(./frag.glsl)
+  #pragma glslify: require('./frag.glsl', isBlock=isBlock)
   `;
   expect(result);
 });
