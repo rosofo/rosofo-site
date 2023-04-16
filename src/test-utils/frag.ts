@@ -25,7 +25,7 @@ export function runFrag(
   dataHeight: number
 ) {
   const context = createContext(100, 100);
-  const renderer = new THREE.WebGLRenderer({ context });
+  const renderer = new THREE.WebGLRenderer({ context, canvas: context.canvas });
   const texture = new THREE.DataTexture(data, dataWidth, dataHeight);
   const target = new THREE.WebGLRenderTarget(dataWidth, dataHeight);
   const material = new THREE.ShaderMaterial({
