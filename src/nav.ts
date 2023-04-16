@@ -240,12 +240,12 @@ export class LinkList extends LitElement {
   routes?: Route[];
 
   render() {
-    if (this.routes)
+    if (this.routes && this.routes.length > 0)
       return html`
         <ul>
           ${this.routes.map((route) => {
             const name = route.name ?? route.path;
-            const href = router.urlForPath(route.path);
+            const href = router.urlForName(route.name);
             return html`<li style=${styleMap({ fontSize: "7cqi" })}>
               <a href=${href}>${name}</a>
               <link-list .routes=${route.children}></link-list>
@@ -257,11 +257,9 @@ export class LinkList extends LitElement {
   }
 
   static styles = css`
-    link-list {
-      margin: 3rem;
-    }
     li {
       list-style: none;
+      margin-left: 1rem;
     }
     li::before {
       margin: 0;
@@ -272,6 +270,7 @@ export class LinkList extends LitElement {
     }
     ul {
       padding: 0;
+      margin: 0;
     }
   `;
 }
