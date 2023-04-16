@@ -11,6 +11,8 @@ bool isBlock(vec2 coord, int index) {
     return coord.x >= min && coord.x <= max && coord.y <= 1.0f;
 }
 
+#pragma glslify: export(isBlock)
+
 vec4 getBlock(int index) {
     float x = blockSize * float(index) + (blockSize * 0.5f);
     return texture2D(u_texture, vec2(x, blockSize * 0.5f));
