@@ -14,6 +14,7 @@ export class RobexLuv extends LitElement {
       textureWidth=${WIDTH}
       textureHeight=${HEIGHT}
       frag=${frag}
+      .uniforms=${{ u_width: { value: WIDTH }, u_height: { value: HEIGHT } }}
     ></shader-plane>`;
   }
 }
