@@ -15,5 +15,5 @@ void main() {
     vec4 curr_a = texture2D(u_texture, vec2(0.0f, 0.0f));
     vec4 new_rest = float(!is_a) * vec4(curr_a.x, 0.0f, 0.0f, 1.0f);
     
-    gl_FragColor = new_a;
+    gl_FragColor = float(!is_a) * vec4(1.0f, 0.0f, 0.0f, 1.0f) + new_a;
 }
