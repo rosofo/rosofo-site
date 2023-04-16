@@ -1,7 +1,7 @@
-import createContext from "gl";
 import * as THREE from "three";
 import { parser, generate } from "@shaderfrog/glsl-parser";
 import { FunctionNode, visit } from "@shaderfrog/glsl-parser/ast";
+import { chromium } from "@playwright/test";
 
 export function extractGlslFunction(frag: string, name: string) {
   let func: FunctionNode | undefined;
@@ -19,13 +19,13 @@ export function extractGlslFunction(frag: string, name: string) {
 }
 
 export function runFrag(
+  canvas: HTMLCanvasElement,
   frag: string,
   data: Uint8Array,
   dataWidth: number,
   dataHeight: number
 ) {
-  const context = createContext(100, 100);
-  const renderer = new THREE.WebGLRenderer({ context, canvas: context.canvas });
+  const renderer = new THREE.WebGLRenderer({ canvas });
   const texture = new THREE.DataTexture(data, dataWidth, dataHeight);
   const target = new THREE.WebGLRenderTarget(dataWidth, dataHeight);
   const material = new THREE.ShaderMaterial({
