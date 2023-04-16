@@ -1,3 +1,4 @@
+declare module "glslify";
 interface GlslifyOption {
   basedir?: string;
   transform?: any;
