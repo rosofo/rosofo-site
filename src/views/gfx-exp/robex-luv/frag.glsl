@@ -9,6 +9,8 @@ void main() {
     
     vec4 new_a = float(is_a) * (data + 0.01f);
     vec4 curr_a = texture2D(u_texture, vec2(0.0f, 0.0f));
+    
+    float love = curr_a.x * 100.0f;
     vec4 new_rest = float(!is_a) * vec4(curr_a.x, 0.0f, 0.0f, 1.0f);
 
     gl_FragColor = new_a + new_rest;
