@@ -4,8 +4,8 @@ import * as THREE from "three";
 import frag from "./frag.glsl?raw";
 import "../../../components/shader-plane";
 
-const WIDTH = 200;
-const HEIGHT = 200;
+const WIDTH = 2;
+const HEIGHT = 1;
 
 @customElement("robex-luv")
 export class RobexLuv extends LitElement {
