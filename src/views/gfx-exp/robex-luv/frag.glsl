@@ -3,12 +3,12 @@ uniform int u_width;
 uniform int u_height;
 
 vec2 toIntCoord(vec2 fragCoord) {
-    return vec2(int(fragCoord.x * float(u_width)), int(fragCoord.y * float(u_height)));
+    return int((fragCoord * float(u_width)) - 0.5f);
 }
 
 void main() {
     vec4 data = texture2D(u_texture, gl_FragCoord.xy);
-    bool is_a = false;
+    bool is_a = toIntCoord(gl_FragCoord.xy) == vec2(0, 0);
     
     vec4 new_a = float(is_a) * (data + 0.01f);
     
