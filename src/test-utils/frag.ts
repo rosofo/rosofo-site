@@ -1,5 +1,22 @@
 import createContext from "gl";
 import * as THREE from "three";
+import { parser, generate } from "@shaderfrog/glsl-parser";
+import { FunctionNode, visit } from "@shaderfrog/glsl-parser/ast";
+
+export function extractGlslFunction(frag: string, name: string) {
+  let func: FunctionNode | undefined;
+  const ast = parser.parse(frag);
+  visit(ast, {
+    function: {
+      enter: (p) => {
+        if (p.key === name) {
+          func = p.node;
+        }
+      },
+    },
+  });
+  return generate(func);
+}
 
 export function runFrag(
   frag: string,

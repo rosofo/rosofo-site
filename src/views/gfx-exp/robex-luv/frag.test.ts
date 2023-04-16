@@ -1,10 +1,8 @@
 import { expect, test } from "vitest";
-import { runFrag } from "../../../test-utils/frag";
-import glsl from "glslify";
+import { extractGlslFunction, runFrag } from "../../../test-utils/frag";
+import frag from "./frag.glsl?raw";
 
 test("isBlock can be used to set a single value", async () => {
-  const result = glsl`
-  #pragma glslify: require('./frag', isBlock=isBlock)
-  `;
-  expect(result);
+  const isBlock = extractGlslFunction(frag, "isBlock");
+  expect(isBlock);
 });
