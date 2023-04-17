@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "test:web": "wtr --watch"
+    "test:web": "vitest --browser"
   },
   "devDependencies": {
     "@playwright/test": "^1.32.3",
