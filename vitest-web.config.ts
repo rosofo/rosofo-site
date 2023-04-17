@@ -4,8 +4,7 @@ export default defineConfig({
   test: {
     browser: {
       enabled: true,
-      provider: "playwright",
-      name: "chromium",
+      name: "chrome",
       headless: true,
     },
     include: ["**/*.webtest.ts"],
