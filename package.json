@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "test:web": "wtr --watch"
   },
   "devDependencies": {
     "@open-wc/testing": "^3.1.8",
