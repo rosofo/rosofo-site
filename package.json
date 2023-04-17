@@ -8,12 +8,13 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "test:web": "vitest --browser"
+    "test:web": "vitest -c vitest-web.config.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.32.3",
     "@shaderfrog/glsl-parser": "^1.4.0",
     "@types/gl": "^6.0.2",
+    "@vitest/browser": "^0.30.1",
     "gl": "^6.0.2",
     "typescript": "^4.9.3",
     "vite": "^4.2.0",
