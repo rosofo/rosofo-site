@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "test:web": "vitest -c vitest-web.config.ts"
+    "test:web": "wtr --files '**/*.webtest.ts'"
   },
   "devDependencies": {
     "@playwright/test": "^1.32.3",
@@ -24,12 +24,14 @@
   "dependencies": {
     "@lit-labs/context": "^0.3.0",
     "@lit/reactive-element": "^1.6.1",
+    "@open-wc/testing": "^3.1.8",
     "@tensorflow/tfjs": "^4.4.0",
     "@types/d3": "^7.4.0",
     "@types/lodash": "^4.14.191",
     "@types/react-dom": "^18.0.11",
     "@types/three": "^0.150.1",
     "@vaadin/router": "^1.7.5",
+    "@web/test-runner": "^0.15.3",
     "d3": "^7.8.3",
     "d3-scale": "^4.0.2",
     "d3-shape": "^3.2.0",
