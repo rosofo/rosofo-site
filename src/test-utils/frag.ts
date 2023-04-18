@@ -1,4 +1,8 @@
 import * as THREE from "three";
+
+import { LitElement, html, css, PropertyValueMap } from "lit";
+import { customElement, property } from "lit/decorators.js";
+import { createRef, ref } from "lit/directives/ref.js";
 import { parser, generate } from "@shaderfrog/glsl-parser";
 import { FunctionNode, visit } from "@shaderfrog/glsl-parser/ast";
 import { chromium } from "@playwright/test";
@@ -19,13 +23,12 @@ export function extractGlslFunction(frag: string, name: string) {
 }
 
 export function runFrag(
-  canvas: HTMLCanvasElement,
   frag: string,
   data: Uint8Array,
   dataWidth: number,
   dataHeight: number
 ) {
-  const renderer = new THREE.WebGLRenderer({ canvas });
+  const renderer = new THREE.WebGLRenderer();
   const texture = new THREE.DataTexture(data, dataWidth, dataHeight);
   const target = new THREE.WebGLRenderTarget(dataWidth, dataHeight);
   const material = new THREE.ShaderMaterial({
