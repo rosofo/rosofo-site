@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "test:web": "wtr --files '**/*.webtest.ts'"
+    "web-test": "wtr"
   },
   "devDependencies": {
     "@playwright/test": "^1.32.3",
@@ -32,6 +32,7 @@
     "@types/react-dom": "^18.0.11",
     "@types/three": "^0.150.1",
     "@vaadin/router": "^1.7.5",
+    "@web/dev-server-esbuild": "^0.3.6",
     "@web/test-runner": "^0.15.3",
     "d3": "^7.8.3",
     "d3-scale": "^4.0.2",
