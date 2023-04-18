@@ -5,7 +5,6 @@ export default defineConfig({
     browser: {
       enabled: true,
       name: "chrome",
-      headless: true,
     },
     include: ["**/*.webtest.ts"],
   },
