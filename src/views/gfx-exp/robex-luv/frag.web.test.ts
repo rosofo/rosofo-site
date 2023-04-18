@@ -1,4 +1,4 @@
-import { expect } from "@esm-bundle/chai";
+import { test, expect } from "vitest";
 import { extractGlslFunction, runFrag } from "../../../test-utils/frag";
 import frag from "./frag.glsl?raw";
 import { runInBrowser } from "../../../test-utils/browser";
