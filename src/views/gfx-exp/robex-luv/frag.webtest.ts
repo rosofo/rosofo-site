@@ -1,4 +1,3 @@
-import * as THREE from "three";
 import { expect, test } from "vitest";
 import { extractGlslFunction, runFrag } from "../../../test-utils/frag";
 import frag from "./frag.glsl?raw";
