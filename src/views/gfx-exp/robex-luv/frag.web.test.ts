@@ -1,3 +1,4 @@
+import { expect } from "@esm-bundle/chai";
 import { extractGlslFunction, runFrag } from "../../../test-utils/frag";
 import frag from "./frag.glsl?raw";
 
