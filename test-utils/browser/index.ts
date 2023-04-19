@@ -5,6 +5,7 @@ import { exec } from "child_process";
 import { resolve } from "path";
 
 async function serve(filepath: string) {
+  process.env.VITE_BROWSER_SCRIPT = filepath;
   return exec(`npx vite --port 5000 ${resolve(__dirname, "index.html")}`);
 }
 
