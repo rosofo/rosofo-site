@@ -10,7 +10,7 @@ export async function runInBrowser(filepath: string) {
       port: 5000,
     },
   });
-  await server.listen();
+  server.listen();
   const browser = await chromium.launch();
   console.log(browser);
   const page = await browser.newPage();
