@@ -16,6 +16,7 @@
     "noImplicitReturns": true,
     "skipLibCheck": true,
     "jsx": "react",
+    "paths": {"test-utils": ["./test-utils"]}
   },
-  "include": ["src"],
+  "include": ["src", "test-utils"],
 }
