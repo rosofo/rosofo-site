@@ -1,6 +1,7 @@
 import { test, expect } from "vitest";
-import {} from "test-utils/browser";
+import { runInBrowser } from "test-utils/browser";
+import { resolve } from "path";
 
 test("foo", async () => {
-  await runInBrowser();
+  await runInBrowser(resolve(__dirname, "main.fragtest.ts"));
 });
