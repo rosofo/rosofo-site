@@ -1,4 +1,5 @@
 import { createServer } from "vite";
+import { expect } from "vitest";
 import { chromium } from "playwright";
 
 export async function runInBrowser(filepath: string) {
@@ -12,5 +13,6 @@ export async function runInBrowser(filepath: string) {
   await server.listen();
   const browser = await chromium.launch();
   const page = await browser.newPage();
-  page.goto("http://localhost:5000");
+  await page.goto("http://localhost:5000");
+  page.getByText("foo");
 }
