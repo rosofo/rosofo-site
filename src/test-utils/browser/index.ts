@@ -12,7 +12,9 @@ export async function runInBrowser(filepath: string) {
   });
   await server.listen();
   const browser = await chromium.launch();
+  console.log(browser);
   const page = await browser.newPage();
+  console.log(page);
   await page.goto("http://localhost:5000");
   expect(page.title()).toEqual("foo");
 }
