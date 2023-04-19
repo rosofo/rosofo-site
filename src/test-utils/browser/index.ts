@@ -16,5 +16,5 @@ export async function runInBrowser(filepath: string) {
   const page = await browser.newPage();
   console.log(page);
   await page.goto("http://localhost:5000");
-  expect(page.title()).toEqual("foo");
+  expect(await page.title()).toEqual("foo");
 }
