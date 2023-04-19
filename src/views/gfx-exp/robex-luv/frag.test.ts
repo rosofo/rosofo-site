@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import { runInBrowser } from "test-utils/browser";
+import { runInBrowser } from "../../../test-utils/browser";
 import { resolve } from "path";
 
 test("foo", async () => {
