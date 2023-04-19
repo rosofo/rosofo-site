@@ -9,7 +9,7 @@ export async function runInBrowser(filepath: string) {
       port: 5000,
     },
   });
-  await server.listen();
+  server.listen();
   const browser = await chromium.launch();
   const page = await browser.newPage();
   page.goto("http://localhost:5000");
