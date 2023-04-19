@@ -14,5 +14,5 @@ export async function runInBrowser(filepath: string) {
   const browser = await chromium.launch();
   const page = await browser.newPage();
   await page.goto("http://localhost:5000");
-  page.getByText("foo");
+  expect(page.title()).toEqual("foo");
 }
