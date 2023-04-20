@@ -10,7 +10,6 @@ import {
 import { customElement, property } from "lit/decorators.js";
 
 import { createRef, ref } from "lit/directives/ref.js";
-import { parser, generate } from "@shaderfrog/glsl-parser/index.js";
 import pkg from "@shaderfrog/glsl-parser/index.js";
 const { parser, generate } = pkg;
 import { FunctionNode, visit } from "@shaderfrog/glsl-parser/ast/index.js";
