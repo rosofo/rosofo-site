@@ -1,4 +1,4 @@
-import { extractGlslFunction } from "test-utils/frag";
+import { extractGlslFunction } from "../../../../test-utils/frag.ts";
 import { readFile } from "fs/promises";
 import { resolve } from "path";
 
