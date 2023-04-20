@@ -1,6 +1,6 @@
-import { FragTest } from "test-utils/frag.ts";
+import { FragTest } from "test-utils/frag";
 import { test, expect } from "@sand4rt/experimental-ct-web";
-import { getIsBlock } from "./glsl-functions.ts";
+import { getIsBlock } from "./glsl-functions";
 
 test("isBlock sets pixel 0,0 only", async ({ mount }) => {
   const component = await mount(FragTest, {
