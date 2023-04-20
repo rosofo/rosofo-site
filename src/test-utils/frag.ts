@@ -1,11 +1,10 @@
 import * as THREE from "three";
 import { LitElement, html, css, PropertyValueMap } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { customElement } from "lit/decorators.js";
 
 import { createRef, ref } from "lit/directives/ref.js";
 import { parser, generate } from "@shaderfrog/glsl-parser";
 import { FunctionNode, visit } from "@shaderfrog/glsl-parser/ast";
-import { chromium } from "@playwright/test";
 
 export function extractGlslFunction(frag: string, name: string) {
   let func: FunctionNode | undefined;
