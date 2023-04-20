@@ -4,9 +4,7 @@ import {
   extractGlslFunction,
 } from "test-utils/frag";
 import { test, expect } from "@sand4rt/experimental-ct-web";
-import frag from "./frag.glsl?raw";
-
-const isBlock = extractGlslFunction(frag, "isBlock");
+import { isBlock } from "./glsl-functions";
 
 test("isBlock sets pixel 0,0 only", async ({ mount }) => {
   const component = await mount(FragTest, {
