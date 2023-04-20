@@ -26,11 +26,8 @@ export class FragTest extends LitElement {
   render() {
     return html`
       <canvas ${ref(this.debugger.ref)}></canvas>
-      <p>${this.config && Array.from(this.config.initData.values())}</p>
-      <p>
-        ${this.debugger.resultData &&
-        Array.from(this.debugger.resultData.values())}
-      </p>
+      <p>${this.config && this.config.initData.at(0)}</p>
+      <p>${this.debugger.resultData && this.debugger.resultData.at(0)}</p>
     `;
   }
 }
