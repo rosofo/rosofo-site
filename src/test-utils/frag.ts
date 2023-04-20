@@ -1,7 +1,7 @@
 import * as THREE from "three";
-
-import { LitElement, html, css, PropertyValueMap } from "lit";
+import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
+
 import { createRef, ref } from "lit/directives/ref.js";
 import { parser, generate } from "@shaderfrog/glsl-parser";
 import { FunctionNode, visit } from "@shaderfrog/glsl-parser/ast";
@@ -47,4 +47,20 @@ export function runFrag(
   renderer.render(scene, camera);
 
   return target.texture.source;
+}
+
+@customElement("frag-debugger")
+export class FragDebugger extends LitElement {
+  ref = createRef();
+  static styles = [
+    css`
+      :host {
+        display: block;
+      }
+    `,
+  ];
+
+  render() {
+    return html`<canvas ${ref(this.ref)}></canvas>`;
+  }
 }
