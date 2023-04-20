@@ -13,5 +13,5 @@ test("isBlock sets pixel 0,0 only", async ({ mount }) => {
       },
     } as any,
   });
-  await expect(component).toContainText("0.0");
+  await expect(component).toContainText("0");
 });
