@@ -40,6 +40,11 @@ export function runFrag(
   const renderer = new THREE.WebGLRenderer({ canvas });
   const texture = new THREE.DataTexture(data, dataWidth, dataHeight);
   const target = new THREE.WebGLRenderTarget(dataWidth, dataHeight);
+  target.texture = new THREE.DataTexture(
+    new Uint8Array(dataWidth * dataHeight * 4),
+    dataWidth,
+    dataHeight
+  );
   const material = new THREE.ShaderMaterial({
     fragmentShader: frag,
     uniforms: { u_texture: { value: texture } },
