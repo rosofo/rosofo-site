@@ -4,7 +4,7 @@ import {
   extractGlslFunction,
 } from "test-utils/frag";
 import { test, expect } from "@sand4rt/experimental-ct-web";
-import { isBlock } from "./glsl-functions";
+import { getIsBlock } from "./glsl-functions";
 
 test("isBlock sets pixel 0,0 only", async ({ mount }) => {
   const component = await mount(FragTest, {
@@ -13,7 +13,7 @@ test("isBlock sets pixel 0,0 only", async ({ mount }) => {
         initData: new Uint8Array(16),
         dataWidth: 2,
         dataHeight: 2,
-        isBlock,
+        frag: await getIsBlock(),
       },
     } as any,
   });
