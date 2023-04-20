@@ -55,7 +55,7 @@ export function runFrag(
   return target.texture.source.data as Uint8Array;
 }
 
-type FragDebugConfig = {
+export type FragDebugConfig = {
   frag: string;
   initData: Uint8Array;
   dataWidth: number;
