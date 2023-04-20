@@ -2,7 +2,9 @@ import { FragDebugConfig, FragDebugger } from "test-utils/frag";
 
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { ref } from "lit/directives/ref";
+import { ref } from "lit/directives/ref.js";
+import { test } from "@sand4rt/experimental-ct-web";
+import frag from "./frag.glsl?raw";
 
 @customElement("frag-test")
 export class FragTest extends LitElement {
@@ -26,3 +28,16 @@ export class FragTest extends LitElement {
     `;
   }
 }
+
+test("it sets pixel 0,0 only", async ({ mount }) => {
+  const component = await mount(FragTest, {
+    props: {
+      config: {
+        initData: new Uint8Array(16),
+        dataWidth: 2,
+        dataHeight: 2,
+        frag,
+      },
+    } as any,
+  });
+});
