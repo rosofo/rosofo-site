@@ -36,7 +36,6 @@ export function runFrag(
   dataWidth: number,
   dataHeight: number
 ) {
-  debugger;
   const renderer = new THREE.WebGLRenderer({ canvas });
   const texture = new THREE.DataTexture(data, dataWidth, dataHeight);
   const target = new THREE.WebGLRenderTarget(dataWidth, dataHeight);
