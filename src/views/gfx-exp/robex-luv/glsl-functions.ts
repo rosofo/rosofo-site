@@ -1,4 +1,8 @@
 import { extractGlslFunction } from "../../../test-utils/frag.ts";
-import frag from "./frag.glsl?raw";
+import { readFile } from "fs/promises";
+import { resolve } from "path";
 
-export const getIsBlock = async () => extractGlslFunction(frag, "isBlock");
+export const isBlock = extractGlslFunction(
+  await readFile(resolve(__dirname, "./frag.glsl"), { encoding: "utf-8" }),
+  "isBlock"
+);
