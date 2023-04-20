@@ -54,7 +54,7 @@ export function runFrag(
   renderer.setRenderTarget(target);
   renderer.render(scene, camera);
 
-  return target.texture.source.data as Uint8Array;
+  return target.texture.source;
 }
 
 export type FragDebugConfig = {
@@ -66,7 +66,7 @@ export type FragDebugConfig = {
 export class FragDebugger implements ReactiveController {
   ref = createRef<HTMLCanvasElement>();
   config?: FragDebugConfig;
-  resultData?: Uint8Array;
+  resultData?: THREE.Source;
   private host;
 
   constructor(host: ReactiveControllerHost) {
