@@ -10,9 +10,10 @@ export class FragTest extends LitElement {
   config?: FragDebugConfig;
 
   debugger = new FragDebugger(this);
-  protected updated(
+  protected update(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ): void {
+    super.update(_changedProperties);
     if (this.config) this.debugger.config = this.config;
   }
   static styles = [
