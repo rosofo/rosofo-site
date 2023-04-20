@@ -64,8 +64,8 @@ type FragDebugConfig = {
 export class FragDebugger implements ReactiveController {
   ref = createRef<HTMLCanvasElement>();
   config;
-  host;
   resultData?: Uint8Array;
+  private host;
 
   constructor(host: ReactiveControllerHost, config: FragDebugConfig) {
     this.host = host;
