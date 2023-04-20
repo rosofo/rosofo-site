@@ -36,6 +36,7 @@ export function runFrag(
   dataWidth: number,
   dataHeight: number
 ) {
+  console.log("runFrag");
   const renderer = new THREE.WebGLRenderer({ canvas });
   const texture = new THREE.DataTexture(data, dataWidth, dataHeight);
   const target = new THREE.WebGLRenderTarget(dataWidth, dataHeight);
@@ -74,6 +75,7 @@ export class FragDebugger implements ReactiveController {
   }
 
   hostUpdated(): void {
+    console.log("frag-test updated");
     if (this.ref.value && this.config)
       this.resultData = runFrag(
         this.ref.value,
