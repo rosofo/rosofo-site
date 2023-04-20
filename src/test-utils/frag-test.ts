@@ -1,4 +1,4 @@
-import { LitElement, html, css } from "lit";
+import { LitElement, html, css, PropertyValueMap } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
 import { ref } from "lit/directives/ref.js";
@@ -7,9 +7,14 @@ import { FragDebugConfig, FragDebugger } from "./frag";
 @customElement("frag-test")
 export class FragTest extends LitElement {
   @property({ type: Object })
-  config!: FragDebugConfig;
+  config?: FragDebugConfig;
 
-  debugger = new FragDebugger(this, this.config);
+  debugger = new FragDebugger(this);
+  protected updated(
+    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
+  ): void {
+    if (this.config) this.debugger.config = this.config;
+  }
   static styles = [
     css`
       :host {

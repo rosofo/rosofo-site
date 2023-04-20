@@ -64,19 +64,17 @@ export type FragDebugConfig = {
 };
 export class FragDebugger implements ReactiveController {
   ref = createRef<HTMLCanvasElement>();
-  config;
+  config?: FragDebugConfig;
   resultData?: Uint8Array;
   private host;
 
-  constructor(host: ReactiveControllerHost, config: FragDebugConfig) {
+  constructor(host: ReactiveControllerHost) {
     this.host = host;
     this.host.addController(this);
-
-    this.config = config;
   }
 
   hostUpdated(): void {
-    if (this.ref.value)
+    if (this.ref.value && this.config)
       this.resultData = runFrag(
         this.ref.value,
         this.config.frag,
