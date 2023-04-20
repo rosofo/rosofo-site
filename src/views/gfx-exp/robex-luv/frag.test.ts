@@ -19,6 +19,10 @@ export class FragTest extends LitElement {
   ];
 
   render() {
-    return html`<canvas ${ref(this.debugger.ref)}></canvas>`;
+    return html`
+      <canvas ${ref(this.debugger.ref)}></canvas>
+      <p>${this.config.initData}</p>
+      <p>${this.debugger.resultData}</p>
+    `;
   }
 }
