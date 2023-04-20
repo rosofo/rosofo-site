@@ -1,5 +1,12 @@
 import * as THREE from "three";
-import { LitElement, html, css, PropertyValueMap } from "lit";
+import {
+  LitElement,
+  html,
+  css,
+  PropertyValueMap,
+  ReactiveController,
+  ReactiveControllerHost,
+} from "lit";
 import { customElement } from "lit/decorators.js";
 
 import { createRef, ref } from "lit/directives/ref.js";
@@ -48,26 +55,25 @@ export function runFrag(
   return target.texture.source;
 }
 
-@customElement("frag-debugger")
-export class FragDebugger extends LitElement {
+type FragDebugConfig = {
+  frag: string;
+  initData: Uint8Array;
+  dataWidth: number;
+  dataHeight: number;
+};
+export class FragDebugger implements ReactiveController {
   ref = createRef<HTMLCanvasElement>();
-  frag?: string;
-  data?: Uint8Array;
-  dataWidth = 100;
-  dataHeight = 100;
-  resultData?: THREE.Source;
+  config;
+  host;
 
-  static styles = [
-    css`
-      :host {
-        display: block;
-      }
-    `,
-  ];
+  constructor(host: ReactiveControllerHost, config: FragDebugConfig) {
+    this.host = host;
+    this.host.addController(this);
 
-  protected updated(
-    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
-  ): void {
+    this.config = config;
+  }
+
+  hostUpdated(): void {
     if (this.ref.value && this.frag && this.data)
       this.resultData = runFrag(
         this.ref.value,
