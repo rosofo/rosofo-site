@@ -3,7 +3,7 @@ import { FragDebugConfig, FragDebugger } from "test-utils/frag";
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { ref } from "lit/directives/ref.js";
-import { test } from "@sand4rt/experimental-ct-web";
+import { test, expect } from "@sand4rt/experimental-ct-web";
 import frag from "./frag.glsl?raw";
 
 @customElement("frag-test")
@@ -40,4 +40,5 @@ test("it sets pixel 0,0 only", async ({ mount }) => {
       },
     } as any,
   });
+  await expect(component).toContainText("foo");
 });

@@ -11,10 +11,11 @@ const HEIGHT = 100;
 export class RobexLuv extends LitElement {
   render() {
     return html`<shader-plane
-      textureWidth=${WIDTH}
-      textureHeight=${HEIGHT}
-      frag=${frag}
-      .uniforms=${{ u_width: { value: WIDTH }, u_height: { value: HEIGHT } }}
-    ></shader-plane>`;
+        textureWidth=${WIDTH}
+        textureHeight=${HEIGHT}
+        frag=${frag}
+        .uniforms=${{ u_width: { value: WIDTH }, u_height: { value: HEIGHT } }}
+      ></shader-plane>
+      <frag-debugger></frag-debugger>`;
   }
 }
