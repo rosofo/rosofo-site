@@ -11,30 +11,19 @@
     "web-test": "wtr"
   },
   "devDependencies": {
-    "@playwright/test": "^1.32.3",
     "@shaderfrog/glsl-parser": "^1.4.0",
-    "@types/gl": "^6.0.2",
-    "@vitest/browser": "^0.30.1",
-    "gl": "^6.0.2",
-    "playwright": "^1.32.3",
     "typescript": "^4.9.3",
-    "vite": "^4.2.0",
-    "vitest": "^0.30.1",
-    "webdriverio": "^8.8.4"
+    "vite": "^4.2.0"
   },
   "dependencies": {
-    "@esm-bundle/chai": "^4.3.4-fix.0",
     "@lit-labs/context": "^0.3.0",
     "@lit/reactive-element": "^1.6.1",
-    "@open-wc/testing": "^3.1.8",
     "@tensorflow/tfjs": "^4.4.0",
     "@types/d3": "^7.4.0",
     "@types/lodash": "^4.14.191",
     "@types/react-dom": "^18.0.11",
     "@types/three": "^0.150.1",
     "@vaadin/router": "^1.7.5",
-    "@web/dev-server-esbuild": "^0.3.6",
-    "@web/test-runner": "^0.15.3",
     "d3": "^7.8.3",
     "d3-scale": "^4.0.2",
     "d3-shape": "^3.2.0",
