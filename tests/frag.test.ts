@@ -7,7 +7,7 @@ test("isBlock sets pixel 0,0 only", async ({ mount }) => {
   ${isBlock}
   
   void main() {
-    gl_FragColor = vec4(1.0f);
+    gl_FragColor = vec4(1.0f) * float(isBlock(gl_FragCoord.xy, 0));
   }
   `;
   const component = await mount(FragTest, {
@@ -20,5 +20,5 @@ test("isBlock sets pixel 0,0 only", async ({ mount }) => {
       },
     } as any,
   });
-  await expect(component).toContainText("0");
+  await expect(component).toContainText("2550");
 });
