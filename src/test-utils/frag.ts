@@ -52,7 +52,7 @@ export function runFrag(
   renderer.setRenderTarget(target);
   renderer.render(scene, camera);
 
-  return target.texture.source;
+  return target.texture.source.data as Uint8Array;
 }
 
 type FragDebugConfig = {
@@ -65,6 +65,7 @@ export class FragDebugger implements ReactiveController {
   ref = createRef<HTMLCanvasElement>();
   config;
   host;
+  resultData?: Uint8Array;
 
   constructor(host: ReactiveControllerHost, config: FragDebugConfig) {
     this.host = host;
@@ -74,18 +75,13 @@ export class FragDebugger implements ReactiveController {
   }
 
   hostUpdated(): void {
-    if (this.ref.value && this.frag && this.data)
+    if (this.ref.value)
       this.resultData = runFrag(
         this.ref.value,
-        this.frag,
-        this.data,
-        this.dataWidth,
-        this.dataHeight
+        this.config.frag,
+        this.config.initData,
+        this.config.dataWidth,
+        this.config.dataHeight
       );
-  }
-
-  render() {
-    return html`<canvas ${ref(this.ref)}></canvas>
-      <p>${this.resultData?.data}</p>`;
   }
 }
