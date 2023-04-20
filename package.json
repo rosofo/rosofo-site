@@ -17,6 +17,7 @@
     "vite": "^4.2.0"
   },
   "dependencies": {
+    "@babel/plugin-proposal-decorators": "^7.21.0",
     "@lit-labs/context": "^0.3.0",
     "@lit/reactive-element": "^1.6.1",
     "@tensorflow/tfjs": "^4.4.0",
