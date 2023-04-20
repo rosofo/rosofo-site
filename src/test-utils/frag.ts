@@ -40,11 +40,6 @@ export function runFrag(
   const renderer = new THREE.WebGLRenderer({ canvas });
   const texture = new THREE.DataTexture(data, dataWidth, dataHeight);
   const target = new THREE.WebGLRenderTarget(dataWidth, dataHeight);
-  target.texture = new THREE.DataTexture(
-    new Uint8Array(dataWidth * dataHeight * 4),
-    dataWidth,
-    dataHeight
-  );
   const material = new THREE.ShaderMaterial({
     fragmentShader: frag,
     uniforms: { u_texture: { value: texture } },
@@ -59,7 +54,17 @@ export function runFrag(
   renderer.setRenderTarget(target);
   renderer.render(scene, camera);
 
-  return target;
+  const resultData = new Uint8Array(dataWidth * dataHeight * 4);
+  renderer.readRenderTargetPixels(
+    target,
+    0,
+    0,
+    dataWidth,
+    dataHeight,
+    resultData
+  );
+
+  return resultData;
 }
 
 export type FragDebugConfig = {
@@ -71,7 +76,7 @@ export type FragDebugConfig = {
 export class FragDebugger implements ReactiveController {
   ref = createRef<HTMLCanvasElement>();
   config?: FragDebugConfig;
-  resultData?: THREE.WebGLRenderTarget;
+  resultData?: Uint8Array;
   private host;
 
   constructor(host: ReactiveControllerHost) {
