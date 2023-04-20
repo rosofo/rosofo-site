@@ -76,7 +76,7 @@ export class FragDebugger implements ReactiveController {
 
   hostUpdated(): void {
     console.log("frag-test updated");
-    if (this.ref.value && this.config)
+    if (this.ref.value && this.config && !this.resultData) {
       this.resultData = runFrag(
         this.ref.value,
         this.config.frag,
@@ -84,5 +84,7 @@ export class FragDebugger implements ReactiveController {
         this.config.dataWidth,
         this.config.dataHeight
       );
+      this.host.requestUpdate();
+    }
   }
 }
