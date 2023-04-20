@@ -1,4 +1,4 @@
-import { FragTest } from "@/test-utils/frag";
+import { FragTest } from "@/test-utils/frag-test";
 import { test, expect } from "@sand4rt/experimental-ct-web";
 import { getIsBlock } from "../src/views/gfx-exp/robex-luv/glsl-functions.ts";
 

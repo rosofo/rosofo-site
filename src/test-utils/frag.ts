@@ -85,26 +85,3 @@ export class FragDebugger implements ReactiveController {
       );
   }
 }
-
-@customElement("frag-test")
-export class FragTest extends LitElement {
-  @property({ type: Object })
-  config!: FragDebugConfig;
-
-  debugger = new FragDebugger(this, this.config);
-  static styles = [
-    css`
-      :host {
-        display: block;
-      }
-    `,
-  ];
-
-  render() {
-    return html`
-      <canvas ${ref(this.debugger.ref)}></canvas>
-      <p>${this.config.initData}</p>
-      <p>${this.debugger.resultData}</p>
-    `;
-  }
-}
