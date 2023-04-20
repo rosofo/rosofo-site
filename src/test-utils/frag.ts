@@ -10,8 +10,8 @@ import {
 import { customElement, property } from "lit/decorators.js";
 
 import { createRef, ref } from "lit/directives/ref.js";
-import { parser, generate } from "@shaderfrog/glsl-parser";
-import { FunctionNode, visit } from "@shaderfrog/glsl-parser/ast";
+import { parser, generate } from "@shaderfrog/glsl-parser/index.ts";
+import { FunctionNode, visit } from "@shaderfrog/glsl-parser/ast/index.ts";
 
 export function extractGlslFunction(frag: string, name: string) {
   let func: FunctionNode | undefined;
