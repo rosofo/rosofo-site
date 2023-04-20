@@ -23,12 +23,13 @@ export function extractGlslFunction(frag: string, name: string) {
 }
 
 export function runFrag(
+  canvas: HTMLCanvasElement,
   frag: string,
   data: Uint8Array,
   dataWidth: number,
   dataHeight: number
 ) {
-  const renderer = new THREE.WebGLRenderer();
+  const renderer = new THREE.WebGLRenderer({ canvas });
   const texture = new THREE.DataTexture(data, dataWidth, dataHeight);
   const target = new THREE.WebGLRenderTarget(dataWidth, dataHeight);
   const material = new THREE.ShaderMaterial({
