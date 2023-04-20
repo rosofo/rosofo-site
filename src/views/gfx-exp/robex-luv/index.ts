@@ -1,7 +1,6 @@
 import { LitElement, html, PropertyValueMap } from "lit";
 import { customElement, state } from "lit/decorators.js";
-import * as THREE from "three";
-import frag from "./frag.glsl?raw";
+import frag from "/frag.glsl?raw";
 import "../../../components/shader-plane";
 
 const WIDTH = 100;
