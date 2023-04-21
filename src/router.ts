@@ -28,11 +28,18 @@ export const views: Route[] = [
       "maro-market",
       "gfx-exp",
     ].map((name) => {
+      const found = Object.entries(viewModules).find(
+        ([viewName]) => name === viewName
+      );
+      let action;
+      if (found) {
+        action = found[1]();
+      }
       return {
         component: name,
         name,
         path: name,
-        action: async () => await import(`./views/${name}`),
+        action,
       };
     }),
   },
