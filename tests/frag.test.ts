@@ -24,5 +24,5 @@ test("isBlock sets pixel 0,0 only", async ({ mount }) => {
     (elem) => elem.debugger.resultData
   );
   expect(resultData[0]).toEqual(255);
-  expect(resultData[4]).toEqual(255);
+  expect(resultData[4]).toEqual(0);
 });
