@@ -20,5 +20,9 @@ test("isBlock sets pixel 0,0 only", async ({ mount }) => {
       },
     } as any,
   });
-  await expect(component).toContainText("2550");
+  const resultData = await component.evaluate<Uint8Array>(
+    (elem) => elem.debugger.resultData
+  );
+  expect(resultData[0]).toEqual(255);
+  expect(resultData[4]).toEqual(255);
 });
