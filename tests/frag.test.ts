@@ -1,10 +1,10 @@
 import { FragTest } from "@/test-utils/frag-test";
 import { test, expect } from "@sand4rt/experimental-ct-web";
-import { isBlock } from "./glsl-functions.ts";
+import { getIsBlock } from "./glsl-functions.ts";
 
 test("isBlock sets pixel 0,0 only", async ({ mount }) => {
   const frag = `
-  ${isBlock}
+  ${await getIsBlock()}
   
   void main() {
     gl_FragColor = vec4(1.0f) * float(isBlock(gl_FragCoord.xy, 0));

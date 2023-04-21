@@ -1,4 +1,10 @@
-import frag from "../src/views/gfx-exp/robex-luv/frag.glsl?raw";
 import { extractGlslFunction } from "../src/test-utils/frag.ts";
+import { readFile } from "fs/promises";
 
-export const isBlock = extractGlslFunction(frag, "isBlock");
+export const getIsBlock = async () =>
+  extractGlslFunction(
+    await readFile("./src/views/gfx-exp/robex-luv/frag.glsl", {
+      encoding: "utf-8",
+    }),
+    "isBlock"
+  );
