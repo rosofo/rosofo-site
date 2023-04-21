@@ -13,6 +13,16 @@ export const routingState = createStore<{
 });
 
 const viewModules = import.meta.glob("./**/views/**/*.ts");
+const viewHierarchy = [
+  "/",
+  [
+    "stress-waves",
+    "hash-trees",
+    "pure-d3",
+    "maro-market",
+    ["gfx-exp", ["robex-luv", "coord-sines"]],
+  ],
+];
 
 export const router = new VRouter(document.getElementById("router-outlet"));
 export const views: Route[] = [
