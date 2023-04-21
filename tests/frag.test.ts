@@ -1,6 +1,6 @@
 import { FragTest } from "@/test-utils/frag-test";
 import { test, expect } from "@sand4rt/experimental-ct-web";
-import { isBlock } from "../src/views/gfx-exp/robex-luv/glsl-functions.ts";
+import { isBlock } from "./glsl-functions.ts";
 
 test("isBlock sets pixel 0,0 only", async ({ mount }) => {
   const frag = `
