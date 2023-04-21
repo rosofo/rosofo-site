@@ -38,11 +38,10 @@ const findViews = (hierarchy: ViewHierarchy) => {
       subViews = entry[1];
     }
 
-    const module: (() => Promise<unknown>) | undefined = Object.entries(
-      viewModules
-    )
-      .filter(([path]) => path.includes(name))
-      .map(([_path, mod]) => mod)[0];
+    const result = Object.entries(viewModules).find(([path]) =>
+      path.endsWith(name)
+    );
+    const module = result ? result[1] : undefined;
     return {
       path: name,
       component: module && name,
