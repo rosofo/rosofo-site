@@ -21,38 +21,20 @@ export const views: Route[] = [
     name: "/",
     animate: true,
     component: "loading-overlay",
-    children: await Promise.all(
-      ["stress-waves", "hash-trees", "pure-d3", "maro-market", "gfx-exp"].map(
-        async (component) => {
-          const childRoutesMod = Object.entries(viewModules).find(
-            ([path]) => path === `./views/${component}/routes.ts`
-          );
-          let children: Route[] = [];
-          if (childRoutesMod) {
-            children = ((await childRoutesMod[1]()) as any).routes;
-          }
-          return {
-            path: component,
-            component,
-            children,
-            name: component,
-            action: async (context, commands) => {
-              routingState.setState({ isLoading: true, isError: false });
-              const entry = Object.entries(viewModules).find(([name]) =>
-                name.match(`views\/${component}(\.ts|\/index\.ts)`)
-              );
-              if (!entry) {
-                console.log("could not find module");
-                routingState.setState({ isLoading: false, isError: true });
-              } else {
-                await entry[1]();
-                routingState.setState({ isLoading: false });
-              }
-            },
-          };
-        }
-      )
-    ),
+    children: [
+      "stress-waves",
+      "hash-trees",
+      "pure-d3",
+      "maro-market",
+      "gfx-exp",
+    ].map((name) => {
+      return {
+        component: name,
+        name,
+        path: name,
+        action: async () => await import(`./views/${name}`),
+      };
+    }),
   },
 ];
 router.setRoutes([
