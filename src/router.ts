@@ -28,7 +28,29 @@ const viewHierarchy: ViewHierarchy = [
 ];
 
 const findViews = (hierarchy: ViewHierarchy) => {
-  hierarchy.map;
+  return hierarchy.map((entry) => {
+    let name: string;
+    let subViews;
+    if (typeof entry === "string") {
+      name = entry;
+    } else {
+      name = entry[0];
+      subViews = entry[1];
+    }
+
+    const module: (() => Promise<unknown>) | undefined = Object.entries(
+      viewModules
+    )
+      .filter(([path]) => path.includes(name))
+      .map(([_path, mod]) => mod)[0];
+    return {
+      path: name,
+      component: module && name,
+      name,
+      action: module && (async () => await module()),
+      children: subViews ? findViews(subViews) : undefined,
+    };
+  });
 };
 
 export const router = new VRouter(document.getElementById("router-outlet"));
