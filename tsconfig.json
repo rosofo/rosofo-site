@@ -18,4 +18,5 @@
     "jsx": "react",
   },
   "include": ["src", "tests"],
+  "exclude": ["*/glsl-functions.ts"]
 }
