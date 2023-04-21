@@ -27,7 +27,7 @@ const viewHierarchy: ViewHierarchy = [
   ],
 ];
 
-const findViews = (hierarchy: ViewHierarchy) => {
+const findViews = (hierarchy: ViewHierarchy): Route[] => {
   return hierarchy.map((entry) => {
     let name: string;
     let subViews;
