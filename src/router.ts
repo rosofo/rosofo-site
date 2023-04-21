@@ -13,47 +13,26 @@ export const routingState = createStore<{
 });
 
 const viewModules = import.meta.glob("./**/views/**/*.ts");
-const viewHierarchy = [
-  "/",
+type ViewHierarchy = (string | [string, ViewHierarchy])[];
+const viewHierarchy: ViewHierarchy = [
   [
-    "stress-waves",
-    "hash-trees",
-    "pure-d3",
-    "maro-market",
-    ["gfx-exp", ["robex-luv", "coord-sines"]],
-  ],
-];
-
-export const router = new VRouter(document.getElementById("router-outlet"));
-export const views: Route[] = [
-  {
-    path: "/",
-    name: "/",
-    animate: true,
-    component: "loading-overlay",
-    children: [
+    "/",
+    [
       "stress-waves",
       "hash-trees",
       "pure-d3",
       "maro-market",
-      "gfx-exp",
-    ].map((name) => {
-      const found = Object.entries(viewModules).find(
-        ([viewName]) => name === viewName
-      );
-      let action;
-      if (found) {
-        action = found[1]();
-      }
-      return {
-        component: name,
-        name,
-        path: name,
-        action,
-      };
-    }),
-  },
+      ["gfx-exp", ["robex-luv", "coord-sines"]],
+    ],
+  ],
 ];
+
+const findViews = (hierarchy: ViewHierarchy) => {
+  hierarchy.map;
+};
+
+export const router = new VRouter(document.getElementById("router-outlet"));
+export const views: Route[] = findViews(viewHierarchy);
 router.setRoutes([
   ...views,
   {
