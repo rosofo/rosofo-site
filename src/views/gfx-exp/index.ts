@@ -21,7 +21,7 @@ export const views: Route[] = [
   },
   {
     path: "caves",
-    component: "caves",
+    component: "gfx-caves",
     name: "caves",
     action: async () => {
       await import("./caves");
