@@ -6,10 +6,9 @@ bool isTexel(ivec2 coord) {
 }
 
 vec4 setTexel(ivec2 coord, vec4 color) {
-    return color * isTexel(coord);
+    return color * float(isTexel(coord));
 }
 
 void main() {
-    vec4 color = texelFetch(u_texture, ivec2(gl_FragCoord.xy), 0);
-    gl_FragColor = color;
+    gl_FragColor = setTexel(ivec2(0, 0), vec4(1.0, 0.0, 0.0, 1.0));
 }
