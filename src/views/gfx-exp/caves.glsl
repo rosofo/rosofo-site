@@ -12,7 +12,7 @@ vec4 setTexel(ivec2 coord, vec4 color) {
 
 void main() {
     ivec2 texCoord = ivec2(gl_FragCoord.x / 3.0f, gl_FragCoord.y / 2.4f);
-    vec4 color = vec4(length(vec2(texCoord))) / 400.0;
+    vec4 color = vec4(length(vec2(texCoord)) / 600.0);
     
     gl_FragColor = color;
 }
