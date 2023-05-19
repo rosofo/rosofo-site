@@ -19,6 +19,14 @@ export const views: Route[] = [
       await import("./coord-sines");
     },
   },
+  {
+    path: "caves",
+    component: "caves",
+    name: "caves",
+    action: async () => {
+      await import("./caves");
+    },
+  },
 ];
 
 @customElement("gfx-exp")
