@@ -30,3 +30,14 @@ const createRenderer = (canvas: HTMLCanvasElement) => {
   const camera = new THREE.PerspectiveCamera();
   return { scene, camera, renderer };
 };
+
+const render = (canvas: HTMLCanvasElement) => {
+  const { scene, camera, renderer } = createRenderer(canvas);
+  const renderTarget = new THREE.WebGLRenderTarget(200, 200);
+  renderer.setRenderTarget(renderTarget);
+  const plane = new THREE.PlaneGeometry(200, 200);
+  const dataTextureMaterial = new THREE.MeshBasicMaterial({
+    map: renderTarget.texture,
+  });
+  scene.add(new THREE.Mesh(plane, dataTextureMaterial));
+};
