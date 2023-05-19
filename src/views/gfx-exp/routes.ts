@@ -1,6 +1,6 @@
 import { Route } from "@vaadin/router";
 
-export const routes: Route[] = [
+export const views: Route[] = [
   {
     path: "robex-luv",
     component: "robex-luv",

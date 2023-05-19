@@ -2,7 +2,7 @@ import { LitElement, html, css } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import { router } from "../../router";
 import { Route } from "@vaadin/router";
-import { routes } from "./routes";
+import { views } from "./routes";
 
 @customElement("gfx-exp")
 export class GfxExp extends LitElement {
@@ -30,7 +30,7 @@ export class GfxNav extends LitElement {
     return html`
         <nav>
             <ul>
-                ${routes.map(
+                ${views.map(
                   (route) =>
                     html`<li><a href=${router.urlForName(route.name ?? "")}>${
                       route.name
