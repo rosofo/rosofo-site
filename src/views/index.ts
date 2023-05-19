@@ -5,6 +5,7 @@ export const views: Route[] = [
     path: "/gfx-exp",
     component: "gfx-exp",
     name: "gfx-exp",
+    children: ...views,
     action: async () => {
       import("./gfx-exp");
     },
