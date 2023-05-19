@@ -1,5 +1,3 @@
-// a litelement component
-import * as THREE from "three";
 import { LitElement, html, css } from "lit";
 import { customElement } from "lit/decorators.js";
 import frag from "./caves.glsl?raw";
