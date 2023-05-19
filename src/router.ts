@@ -1,6 +1,7 @@
 import { Route, Router as VRouter } from "@vaadin/router";
 import { createStore } from "zustand/vanilla";
 import "./components/loading-overlay";
+import views from "./views";
 
 export const routingState = createStore<{
   isLoading: boolean;
