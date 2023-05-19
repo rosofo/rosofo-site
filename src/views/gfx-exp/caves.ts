@@ -20,10 +20,13 @@ export class GfxCaves extends LitElement {
   }
 }
 
-// Creates a new three.js context
+// Creates a new three.js context, scene and camera
 // @param canvas The canvas element to render to
 const createRenderer = (canvas: HTMLCanvasElement) => {
   const renderer = new THREE.WebGLRenderer({ canvas });
   renderer.setClearColor(0x000000, 1);
-  return renderer;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera();
+  return { scene, camera, renderer };
 };
