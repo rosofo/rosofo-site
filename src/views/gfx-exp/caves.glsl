@@ -13,5 +13,5 @@ vec4 setTexel(ivec2 coord, vec4 color) {
 void main() {
     vec4 tX = setTexel(ivec2(0, 0), texelFetch(u_texture, ivec2(0, 0), 0) + vec4(0.00001f));
     ivec2 current = ivec2(gl_FragCoord.x / 3.0f, gl_FragCoord.y / 2.4f);
-    gl_FragColor = tX + (vec4(1.0, 0.0, 0.0, 1.0) - texelFetch(u_texture, ivec2(0, 0), 0));
+    gl_FragColor = tX + (vec4(1.0, 0.0, 0.0, 1.0) - texelFetch(u_texture, ivec2(0, 0), 0)) * float(!texelActive(ivec2(0, 0)));
 }
