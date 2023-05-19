@@ -1,7 +1,7 @@
 // a litelement component
 import * as THREE from "three";
-
 import { LitElement, html, css, customElement } from "lit-element";
+import frag from "./caves.glsl?raw";
 const WIDTH = 200;
 const HEIGHT = 200;
 
@@ -15,17 +15,13 @@ export class GfxCaves extends LitElement {
 
   render() {
     return html`
-      <div>
-        <shader-plane
-          textureWidth=${WIDTH}
-          textureHeight=${HEIGHT}
-          frag=${frag}
-          .uniforms=${{ u_time: { value: 0 } }}
-          .beforeFrame=${(ctx) => {
-            ctx.uniforms.u_time = { value: this.clock.next() };
-          }}
-        ></shader-plane>
-      </div>
+      <shader-plane
+        textureWidth=${WIDTH}
+        textureHeight=${HEIGHT}
+        frag=${frag}
+        .uniforms=${{ u_time: { value: 0 } }}
+        .beforeFrame=${(ctx) => {}}
+      ></shader-plane>
     `;
   }
 }
