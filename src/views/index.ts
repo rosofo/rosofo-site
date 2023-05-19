@@ -1,6 +1,6 @@
 import { Route } from "@vaadin/router";
 
-const views: Route[] = [
+export const views: Route[] = [
   {
     path: "/gfx-exp",
     component: "gfx-exp",
