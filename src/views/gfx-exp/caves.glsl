@@ -1,6 +1,10 @@
 uniform sampler2D u_texture;
 uniform float u_time;
 
+float rand(vec2 co) {
+    return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
+}
+
 bool texelActive(ivec2 coord) {
     ivec2 c = ivec2(gl_FragCoord.x / 3.0f, gl_FragCoord.y / 2.4f);
     return coord == c;
@@ -26,11 +30,8 @@ void main() {
     
     bool isStart = !bool(getVar(0).w);
     vec4 newIsStart = setVar(0, vec4(0.0, 0.0, 0.0, 1.0));
-
     
-    gl_FragColor = color + newIsStart;
-}
-
-float rand(vec2 co) {
-    return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
+    vec4 randomColorStart = vec4(isStart * rand());
+    
+    gl_FragColor = color + newIsStart + randomColorStart;
 }
