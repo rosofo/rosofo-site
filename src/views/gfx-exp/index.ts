@@ -2,7 +2,24 @@ import { LitElement, html, css } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import { router } from "../../router";
 import { Route } from "@vaadin/router";
-import { views } from "./routes";
+export const views: Route[] = [
+  {
+    path: "robex-luv",
+    component: "robex-luv",
+    name: "robex-luv",
+    action: async () => {
+      await import("./robex-luv");
+    },
+  },
+  {
+    path: "coord-sines",
+    component: "coord-sines",
+    name: "coord-sines",
+    action: async () => {
+      await import("./coord-sines");
+    },
+  },
+];
 
 @customElement("gfx-exp")
 export class GfxExp extends LitElement {
