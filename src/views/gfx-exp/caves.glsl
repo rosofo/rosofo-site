@@ -25,7 +25,8 @@ void main() {
     color.w = 1.0;
     
     bool isStart = !bool(getVar(0).w);
-    vec4 newIsStart = vec4(0.0, 0.0, 0.0, 1.0);
+    vec4 newIsStart = setVar(0, vec4(0.0, 0.0, 0.0, 1.0));
+
     
     gl_FragColor = color + newIsStart;
 }
