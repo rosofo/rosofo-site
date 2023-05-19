@@ -10,5 +10,6 @@ vec4 setTexel(ivec2 coord, vec4 color) {
 }
 
 void main() {
-    gl_FragColor = setTexel(ivec2(0, 0), vec4(1.0, 0.0, 0.0, 1.0));
+    ivec2 current = ivec2(gl_FragCoord.xy);
+    gl_FragColor = current.x < 100 && current.y < 100 ? vec4(1.0, 0.0, 0.0, 1.0) : vec4(0.0);
 }
