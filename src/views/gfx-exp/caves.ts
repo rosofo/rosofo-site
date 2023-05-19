@@ -1,4 +1,5 @@
 // a litelement component
+import * as THREE from "three";
 
 import { LitElement, html, css, customElement } from "lit-element";
 
@@ -18,3 +19,11 @@ export class GfxCaves extends LitElement {
     `;
   }
 }
+
+// Creates a new three.js context
+// @param canvas The canvas element to render to
+const createRenderer = (canvas: HTMLCanvasElement) => {
+  const renderer = new THREE.WebGLRenderer({ canvas });
+  renderer.setClearColor(0x000000, 1);
+  return renderer;
+};
