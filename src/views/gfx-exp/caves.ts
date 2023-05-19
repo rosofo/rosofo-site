@@ -3,7 +3,7 @@
 import { LitElement, html, css, customElement } from "lit-element";
 
 @customElement("gfx-caves")
-class GfxCaves extends LitElement {
+export class GfxCaves extends LitElement {
   static styles = css`
     :host {
       display: block;
