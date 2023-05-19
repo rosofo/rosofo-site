@@ -27,14 +27,10 @@ vec4 cond(bool p, vec4 v) {
 }
 
 void main() {
-    ivec2 texCoord = ivec2(gl_FragCoord.x / 3.0f, gl_FragCoord.y / 2.4f);
-    vec4 color = vec4(length(vec2(texCoord)) / 600.0);
-    color.w = 1.0;
-    
     bool isStart = getVar(0).w == 1.0;
     vec4 newIsStart = vec4(0.0);
     
     vec4 randomColorStart = cond(isStart, vec4(vec3(rand(gl_FragCoord.xy)), 1.0));
     
-    gl_FragColor = color + newIsStart + randomColorStart;
+    gl_FragColor = newIsStart + randomColorStart;
 }
