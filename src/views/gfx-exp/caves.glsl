@@ -37,5 +37,6 @@ void main() {
     
     vec4 randomColorStart = cond(!varActive(), cond(isStart, vec4(vec3(rand(gl_FragCoord.xy)), 1.0)));
     
-    gl_FragColor = (newIsStart + randomColorStart) * cond(getVar(0).w < 1.0 && getVar(0).w > 0.0, 0.0);
+    bool invalidStart = getVar(0).w < 1.0 && getVar(0).w > 0.0;
+    gl_FragColor = (newIsStart + randomColorStart) * cond(invalidStart, 0.0);
 }
