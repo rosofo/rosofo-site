@@ -1,11 +1,12 @@
 import { Route } from "@vaadin/router";
+import { views as gfxExp } from "./gfx-exp";
 
 export const views: Route[] = [
   {
     path: "/gfx-exp",
     component: "gfx-exp",
     name: "gfx-exp",
-    children: ...views,
+    children: gfxExp,
     action: async () => {
       import("./gfx-exp");
     },
