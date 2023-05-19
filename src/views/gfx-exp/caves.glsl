@@ -2,11 +2,12 @@ uniform sampler2D u_texture;
 uniform float u_time;
 
 ivec2 texelCoord(vec4 fragCoord) {
-    return ivec2((int)(fragCoord.x / 3.0), (int)(fragCoord.y / 2.4));
+    return ivec2(int(fragCoord.x / 3.0), int(fragCoord.y / 2.4));
 }
 
 bool texelActive(ivec2 coord) {
-    return texelCoord(gl_FragCoord.xy) == coord;
+    ivec2 c = texelCoord(gl_FragCoord.xy);
+    return true;
 }
 
 vec4 setTexel(ivec2 coord, vec4 color) {
