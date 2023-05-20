@@ -49,7 +49,7 @@ void main() {
     vec4 newStart = started.x == 0.0 ? set(201, vec4(1.0)) : set(201, started);
 
     ivec2 sc = texelCoord(gl_FragCoord);
-    vec4 lineColor = dot(sc - u_p1, u_p2 - u_p1) == 0 ? vec4(1.0, 0.0, 0.0, 1.0) : vec4(0.0);
+    vec4 lineColor = dot(vec2(sc - u_p1), vec2(u_p2 - u_p1)) == 0.0 ? vec4(1.0, 0.0, 0.0, 1.0) : vec4(0.0);
 
     if(texelCoord(gl_FragCoord).y > 10) {
         gl_FragColor = lineColor;
