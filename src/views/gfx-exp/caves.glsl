@@ -52,11 +52,7 @@ vec4 saveColor(vec4 color) {
 }
 
 void main() {
-    bool isStart = getVar(0).w == 0.0;
-    vec4 newIsStart = setVar(0, vec4(vec3(0.0), 0.0));
+    bool isStart = getVar(100).w == 1.0;
     
-    vec4 randomColorStart = _if(isStart, vec4(vec3(rand(gl_FragCoord.xy + u_time)), 1.0));
-    
-    bool invalidStart = getVar(0).w < 1.0 && getVar(0).w > 0.0;
-    gl_FragColor = newIsStart + saveColor(randomColorStart);
+    gl_FragColor = saveColor(_if(isStart, vec4(1.0)));
 }
