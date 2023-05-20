@@ -42,7 +42,7 @@ vec4 set(ivec2 varI, float value) {
 
 void main() {
     ivec2 size = textureSize(u_texture, 0);
-    ivec2 vX = var(u_x);
+    ivec2 vX = var(400);
     
     vec4 newX = set(vX, float(u_x));
     float x = get(vX);
