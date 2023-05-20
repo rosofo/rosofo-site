@@ -3,8 +3,8 @@ precision highp float;
 uniform sampler2D u_texture;
 uniform float u_x;
 uniform float u_time;
-uniform vec2 u_p1;
-uniform vec2 u_p2;
+uniform ivec2 u_p1;
+uniform ivec2 u_p2;
 
 float rand(vec2 co) {
     return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
@@ -52,10 +52,10 @@ void main() {
     vec4 lineColor = vec4(length(vec2(u_p1 - sc)) / float(size.x));
 
     if(texelCoord(gl_FragCoord).y > 10) {
-        gl_FragColor = lineColor + setTexel(fa, vec4(1.0f, 0.0f, 0.0f, 1.0f));
+        gl_FragColor = lineColor + setTexel(u_p1, vec4(1.0f, 0.0f, 0.0f, 1.0f));
     } else if(texelCoord(gl_FragCoord).y > 0) {
         gl_FragColor = debugColor(0, x) + debugColor(1, started);
     } else {
-        gl_FragColor = newX + newStart + newfa + newfb;
+        gl_FragColor = newX + newStart;
     }
 }
