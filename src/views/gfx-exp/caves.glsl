@@ -34,7 +34,8 @@ vec4 set(int index, vec4 value) {
 }
 
 vec4 debugColor(int index, vec4 value) {
-    return gl_FragCoord.x >= float(index) && gl_FragCoord.x < float(index + 1) ? value : vec4(0.0);
+    float findex = float(index) * 8.0;
+    return gl_FragCoord.x >= findex && gl_FragCoord.x < findex + 8.0 ? value : vec4(0.0);
 }
 
 void main() {
@@ -45,9 +46,9 @@ void main() {
     
     if (texelCoord(gl_FragCoord).y > 10) {
         gl_FragColor = vec4((x.xyz / 2.0), 1.0);
-    } else if (texelCoord(gl_FragCoord.y) > 0) {
-        gl_FragColor = debugColor(x);
+    } else if (texelCoord(gl_FragCoord).y > 0) {
+        gl_FragColor = debugColor(0, x / 2.0);
     } else {
-        gl_FragColor = newX + set(201, vec4(x.x > 100.0 ? 1.0 : 0.0, x.x > 10.0 ? 1.0 : 0.0, 0.0, 1.0));
+        gl_FragColor = newX;
     }
 }
