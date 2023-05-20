@@ -54,7 +54,7 @@ void main() {
     vec4 randomColorStart = _if(!varActive(), _if(isStart, vec4(vec3(rand(gl_FragCoord.xy)), 1.0)));
     
     vec4 texel = pickRandTexel();
-    vec4 transformed = getCurrentTexel() + (texel * getVar(1).x);
+    vec4 transformed = _if(!varActive(), getCurrentTexel() + (texel * getVar(1).x));
     
     bool invalidStart = getVar(0).w < 1.0 && getVar(0).w > 0.0;
     gl_FragColor = transformed + (newIsStart + randomColorStart) + setVar(100, _if(!invalidStart, vec4(1.0, 0.0, 0.0, 1.0)));
