@@ -34,7 +34,7 @@ vec4 set(int index, vec4 value) {
 void main() {
     ivec2 size = textureSize(u_texture, 0);
     
-    vec4 newX = set(0, vec4(u_x));
+    vec4 newX = set(200, vec4(u_x));
     vec4 x = get(0);
     
     if (texelCoord(gl_FragCoord).y > 0) {
