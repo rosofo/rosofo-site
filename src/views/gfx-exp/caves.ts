@@ -27,6 +27,10 @@ export class GfxCaves extends LitElement {
         }}
         .beforeFrame=${(ctx) => {}}
       ></shader-plane>
+      <input
+        type="slider"
+        onInput=${(event) => moveA(event.currentTarget.value)}
+      />
     `;
   }
 }
