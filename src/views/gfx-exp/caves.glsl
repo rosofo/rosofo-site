@@ -57,8 +57,10 @@ void main() {
     vec4 transformed = _if(texel.x - getCurrentTexel().x > 0.5, (1.0 + sin(texel)) * 0.5);
     
     float total = 0.0;
-    for (int i = 0; i < 200; i++) {
-        total += getTexel(i).x;
+    for (int x = 0; x < 200; x++) {
+        for (int y = 0; y < 200; y++) {
+            total += texelFetch(u_texture, ivec2(x, y), 0).x;
+        }
     }
     vec4 reset = _if(total > 100.0, setVar(0, vec4(0.0, 0.0, 0.0, 0.0)));
 
