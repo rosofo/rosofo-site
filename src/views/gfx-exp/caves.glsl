@@ -42,6 +42,6 @@ void main() {
     if (texelCoord(gl_FragCoord).y > 10) {
         gl_FragColor = vec4((x.xyz / 2.0), 1.0);
     } else {
-        gl_FragColor = newX;
+        gl_FragColor = newX + set(201, vec4(x.x > 100.0 ? 1.0 : 0.0, x.x > 10.0 ? 1.0 : 0.0, 0.0, 1.0));
     }
 }
