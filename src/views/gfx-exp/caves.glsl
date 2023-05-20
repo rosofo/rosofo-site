@@ -40,28 +40,28 @@ vec4 debugColor(int index, vec4 value) {
     return gl_FragCoord.x >= findex && gl_FragCoord.x < findex + 8.0 ? value : vec4(0.0);
 }
 
-vec4 render(vec4[arrSize] colors, vec4[arrSize] debugColors, vec4[arrSize] newValues) {
+void render(vec4[arrSize] colors, vec4[arrSize] debugColors, vec4[arrSize] newValues) {
     vec4 color = vec4(0.0);
     for(int i = 0; i < colors.length(); i++) {
         color += colors[i];
     }
 
-    vec4 debugColors = vec4(0.0);
+    vec4 debugColor = vec4(0.0);
     for(int i = 0; i < debugColors.length(); i++) {
-        debugColors += debugColors[i];
+        debugColor += debugColors[i];
     }
 
-    vec4 newValues = vec4(0.0);
+    vec4 newValue = vec4(0.0);
     for(int i = 0; i < newValues.length(); i++) {
-        newValues += newValues[i];
+        newValue += newValues[i];
     }
 
     if(texelCoord(gl_FragCoord).y > 10) {
         gl_FragColor = color;
     } else if(texelCoord(gl_FragCoord).y > 0) {
-        gl_FragColor = debugColors;
+        gl_FragColor = debugColor;
     } else {
-        gl_FragColor = newValues;
+        gl_FragColor = newValue;
     }
 }
 
@@ -74,5 +74,5 @@ void main() {
     vec4 started = get(201);
     vec4 newStart = started.w == 0.0 ? set(201, vec4(1.0)) : started;
 
-    gl_FragColor = render(vec4[arrSize] vec4(0.0)), vec4[arrSize](debugColor(0, x), debugColor(1, started)), vec4[arrSize](newX, newStart));
+    render(vec4[arrSize](vec4(0.0)), vec4[arrSize](debugColor(0, x), debugColor(1, started)), vec4[arrSize](newX, newStart));
 }
