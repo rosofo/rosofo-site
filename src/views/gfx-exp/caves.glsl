@@ -53,8 +53,12 @@ void main() {
     vec4 newfa = set(202, vec4(spawn(u_time).xy, 0.0, 1.0));
     vec4 newfb = set(203, vec4(spawn(u_time).xy, 0.0, 1.0));
 
+    ivec2 fa = ivec2(get(202).xy);
+    ivec2 sc = texelCoord(gl_FragCoord);
+    vec4 lineColor = vec4(length(vec2(fa - sc)));
+
     if(texelCoord(gl_FragCoord).y > 10) {
-        gl_FragColor = vec4(0.0);
+        gl_FragColor = lineColor;
     } else if(texelCoord(gl_FragCoord).y > 0) {
         gl_FragColor = debugColor(0, x) + debugColor(1, started) + debugColor(2, get(202)) + debugColor(3, get(203));
     } else {
