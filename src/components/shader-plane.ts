@@ -58,6 +58,7 @@ export class ShaderPlane extends LitElement {
       uniforms: { u_texture: { value: texture }, ...this.uniforms },
     });
     const plane = new THREE.Mesh(new THREE.PlaneGeometry(), this.material);
+    plane.scale.set(2, 2, 1);
     scene.add(plane);
     camera.position.z = 1;
     const targetA = new THREE.WebGLRenderTarget(
