@@ -51,11 +51,14 @@ void main() {
     vec4 started = get(201);
     vec4 newStart = started.x == 0.0 ? set(201, vec4(1.0)) : set(201, started);
 
-    vec4 color = vec4(0.0);
-    color = spawn();
+    vec4 spawnColor = vec4(0.0);
+    spawnColor = spawn();
+
+    ivec2 sc = texelCoord(gl_FragCoord);
+    vec4 neighborGrow = setTexel(sc, texelFetch(u_texture, ivec2(sc.x, sc.y - 1), 0).x > 0.0 ? vec4(1.0) : getScreenTexel(gl_FragCoord));
 
     if(texelCoord(gl_FragCoord).y > 10) {
-        gl_FragColor = color;
+        gl_FragColor = spawnColor + neighborGrow;
     } else if(texelCoord(gl_FragCoord).y > 0) {
         gl_FragColor = debugColor(0, x) + debugColor(1, started);
     } else {
