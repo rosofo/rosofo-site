@@ -24,7 +24,7 @@ export class GfxCaves extends LitElement {
         frag=${frag}
         .uniforms=${{
           u_x: { value: this.x },
-          u_time: { value: this.time },
+          u_time: { value: 5 },
         }}
         .beforeFrame=${(ctx) => {
           ctx.uniforms.u_x.value = this.x;

@@ -52,12 +52,10 @@ void main() {
     vec4 newStart = started.x == 0.0 ? set(201, vec4(1.0)) : set(201, started);
 
     vec4 color = vec4(0.0);
-    if(started.x == 0.0) {
-        gl_FragColor = spawn();
-    }
+    color = spawn();
 
     if(texelCoord(gl_FragCoord).y > 10) {
-        gl_FragColor = vec4(0.0);
+        gl_FragColor = color;
     } else if(texelCoord(gl_FragCoord).y > 0) {
         gl_FragColor = debugColor(0, x) + debugColor(1, started);
     } else {
