@@ -13,7 +13,7 @@ export class GfxCaves extends LitElement {
     }
   `;
 
-  t = 0;
+  x = 0;
 
   render() {
     return html`
@@ -22,15 +22,22 @@ export class GfxCaves extends LitElement {
         textureHeight=${HEIGHT}
         frag=${frag}
         .uniforms=${{
+          u_x: { value: this.x },
           u_a: { value: [255, 0, 0, 255] },
           u_b: { value: [0, 0, 0, 255] },
         }}
-        .beforeFrame=${(ctx) => {}}
+        .beforeFrame=${(ctx) => {
+          ctx.uniforms.u_x = { value: this.x };
+        }}
       ></shader-plane>
       <input
         type="slider"
-        onInput=${(event) => moveA(event.currentTarget.value)}
+        onInput=${(event: InputEvent) => this.moveX(event.currentTarget?.value)}
       />
     `;
+  }
+
+  moveX(value: number | null) {
+    this.x = value ?? 0;
   }
 }
