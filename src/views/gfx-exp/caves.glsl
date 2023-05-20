@@ -28,7 +28,7 @@ float modI(float a,float b) {
 }
 ivec2 var(int index) {
     int texelIndex = int(floor(float(index) / 4.0));
-    int componentIndex = int(floor(modI(float(index), 4.0)));
+    int componentIndex = 0;  // test
     return ivec2(texelIndex, componentIndex);
 }
 
@@ -50,5 +50,5 @@ void main() {
     vec4 newX = set(vX, float(u_x));
     float x = get(vX);
     vec4 newA = setTexel(ivec2(x, size.y / 2), u_a);
-    gl_FragColor = vec4(vec3(float(vX.y) * 100.0), 1.0);
+    gl_FragColor = newX + vec4(vec3(x), 1.0);
 }
