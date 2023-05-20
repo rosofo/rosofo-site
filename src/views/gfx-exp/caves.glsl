@@ -52,8 +52,8 @@ vec4 saveColor(vec4 color) {
 }
 
 void main() {
-    bool isStart = getVar(100).w == 1.0;
-    vec4 newIsStart = setVar(100, vec4(0.0));
+    bool isStart = getVar(100).x == 1.0;
+    vec4 newIsStart = setVar(100, vec4(1.0));
     
-    gl_FragColor = newIsStart + saveColor(_if(isStart, vec4(1.0)) + _if(!isStart, vec4(0.0)));
+    gl_FragColor = newIsStart + saveColor(_if(!isStart, vec4(1.0)));
 }
