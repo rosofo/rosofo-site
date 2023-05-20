@@ -22,10 +22,13 @@ vec4 setTexel(ivec2 coord, vec4 color) {
 vec4 getScreenTexel(vec4 coord) {
     return texelFetch(u_texture, texelCoord(coord), 0);
 }
-
+float modI(float a,float b) {
+    float m=a-floor((a+0.5)/b)*b;
+    return floor(m+0.5);
+}
 ivec2 var(int index) {
     int texelIndex = int(floor(float(index) / 4.0));
-    int componentIndex = int(floor(mod(float(index), 4.0)));
+    int componentIndex = int(floor(modI(float(index), 4.0)));
     return ivec2(texelIndex, componentIndex);
 }
 
