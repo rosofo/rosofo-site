@@ -50,5 +50,10 @@ void main() {
     vec4 newX = set(vX, float(u_x));
     float x = get(vX);
     vec4 newA = setTexel(ivec2(x, size.y / 2), u_a);
-    gl_FragColor = newX + vec4(vec3(x), 1.0);
+    
+    if (texelCoord(gl_FragCoord).y > 0) {
+        gl_FragColor = vec4(vec3(x), 1.0);
+    } else {
+        gl_FragColor = newX;
+    }
 }
