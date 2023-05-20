@@ -38,6 +38,11 @@ vec4 debugColor(int index, vec4 value) {
     return gl_FragCoord.x >= findex && gl_FragCoord.x < findex + 8.0 ? value : vec4(0.0);
 }
 
+vec4 spawn() {
+    ivec2 randomCoord = ivec2(rand(vec2(gl_FragCoord.x, u_time)) * 200.0, rand(vec2(gl_FragCoord.y, u_time)) * 200.0);
+    return setTexel(randomCoord, vec4(1.0));
+}
+
 void main() {
     ivec2 size = textureSize(u_texture, 0);
 
@@ -46,6 +51,11 @@ void main() {
 
     vec4 started = get(201);
     vec4 newStart = started.x == 0.0 ? set(201, vec4(1.0)) : set(201, started);
+
+    vec4 color = vec4(0.0);
+    if(started.x == 0.0) {
+        gl_FragColor = spawn();
+    }
 
     if(texelCoord(gl_FragCoord).y > 10) {
         gl_FragColor = vec4(0.0);
