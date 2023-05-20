@@ -51,7 +51,7 @@ void main() {
     bool isStart = getVar(0).w == 0.0;
     vec4 newIsStart = setVar(0, vec4(vec3(0.0), 0.0));
     
-    vec4 randomColorStart = _if(!varActive(), _if(isStart, vec4(vec3(rand(gl_FragCoord.xy * u_time)), 1.0)));
+    vec4 randomColorStart = _if(!varActive(), _if(isStart, vec4(vec3(rand(gl_FragCoord.xy + u_time)), 1.0)));
     
     vec4 texel = pickRandTexel();
     vec4 transformed = _if(abs(texel.x - getCurrentTexel().x) > 0.5, vec4(getCurrentTexel().xy, texel.x * 0.01, 1.0));
