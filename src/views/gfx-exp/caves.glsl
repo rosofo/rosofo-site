@@ -11,7 +11,7 @@ ivec2 texelCoord(vec4 coord) {
 }
 
 vec4 setTexel(ivec2 coord, vec4 color) {
-    if (coord == texelCoord(gl_FragColor)) {
+    if (coord == texelCoord(gl_FragCoord)) {
         return color;
     } else {
         return vec4(0.0);
@@ -23,5 +23,5 @@ vec4 getTexel(vec4 coord) {
 }
 
 void main() {
-    gl_FragColor = setTexel(ivec2(0, 0), u_a);
+    gl_FragColor = setTexel(ivec2(100, 100), u_a);
 }
