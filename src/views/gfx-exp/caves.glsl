@@ -35,7 +35,7 @@ void main() {
     ivec2 size = textureSize(u_texture, 0);
     
     vec4 newX = set(200, vec4(u_x));
-    vec4 x = get(0);
+    vec4 x = get(200);
     
     if (texelCoord(gl_FragCoord).y > 10) {
         gl_FragColor = vec4(x.xyz, 1.0);
