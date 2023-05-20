@@ -56,6 +56,13 @@ void main() {
     vec4 texel = pickRandTexel();
     vec4 transformed = _if(texel.x - getCurrentTexel().x > 0.5, (1.0 + sin(texel)) * 0.5);
     
+    float total = 0.0;
+    for (int i = 0; i < 200; i++) {
+        total += getTexel(i).x;
+    }
+    vec4 reset = _if(total > 100.0, setVar(0, vec4(0.0, 0.0, 0.0, 0.0)));
+
+    
     bool invalidStart = getVar(0).w < 1.0 && getVar(0).w > 0.0;
-    gl_FragColor = transformed + (newIsStart + randomColorStart) + setVar(100, _if(!invalidStart, vec4(1.0, 0.0, 0.0, 1.0)));
+    gl_FragColor = reset + transformed + (newIsStart + randomColorStart) + setVar(100, _if(!invalidStart, vec4(1.0, 0.0, 0.0, 1.0)));
 }
