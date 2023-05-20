@@ -55,7 +55,7 @@ void main() {
 
     ivec2 fa = ivec2(get(202).xy);
     ivec2 sc = texelCoord(gl_FragCoord);
-    vec4 lineColor = vec4(length(vec2(fa - sc)));
+    vec4 lineColor = vec4(length(vec2(fa - sc)) / float(size.x));
 
     if(texelCoord(gl_FragCoord).y > 10) {
         gl_FragColor = lineColor;
