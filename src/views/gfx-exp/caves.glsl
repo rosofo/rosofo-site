@@ -1,4 +1,4 @@
-#version 100
+precision highp float;
 
 uniform sampler2D u_texture;
 uniform float u_x;
