@@ -55,5 +55,5 @@ void main() {
     vec4 a = getVar(100);
     vec4 b = getVar(102);
     
-    gl_FragColor = saveColor(a + b);
+    gl_FragColor = setVar(100, vec4(1.0)) + saveColor(a + b);
 }
