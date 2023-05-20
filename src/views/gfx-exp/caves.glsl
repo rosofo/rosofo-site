@@ -23,6 +23,12 @@ vec4 getScreenTexel(vec4 coord) {
     return texelFetch(u_texture, texelCoord(coord), 0);
 }
 
+ivec2 var(int index) {
+    int texelIndex = index / 4;
+    int componentIndex = mod(index, 4);
+    return ivec2(texelIndex, componentIndex);
+}
+
 void main() {
     ivec2 size = textureSize(u_texture, 0);
     vec4 newA = setTexel(ivec2(u_x, size.y / 2), u_a);
