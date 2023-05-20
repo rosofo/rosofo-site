@@ -24,6 +24,6 @@ vec4 getScreenTexel(vec4 coord) {
 
 void main() {
     vec4 newA = setTexel(ivec2(100, 100), u_a);
-    vec4 newA_ = setTexel(ivec2(105, 100), texelFetch(u_texture, ivec2(100, 100), 0));
-    gl_FragColor = newA;
+    vec4 newB = setTexel(ivec2(105, 100), texelFetch(u_texture, ivec2(100, 100), 0));
+    gl_FragColor = newA + newB;
 }
