@@ -36,7 +36,7 @@ bool varActive() {
 }
 
 void main() {
-    bool isStart = getVar(0).w == 1.0;
+    bool isStart = getVar(0).w == 0.0;
     vec4 newIsStart = vec4(0.0);
     
     vec4 randomColorStart = _if(!varActive(), _if(isStart, vec4(vec3(rand(gl_FragCoord.xy)), 1.0)));
