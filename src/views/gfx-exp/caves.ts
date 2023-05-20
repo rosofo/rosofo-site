@@ -14,6 +14,7 @@ export class GfxCaves extends LitElement {
   `;
 
   x = 0;
+  time = 0;
 
   render() {
     return html`
@@ -23,11 +24,11 @@ export class GfxCaves extends LitElement {
         frag=${frag}
         .uniforms=${{
           u_x: { value: this.x },
-          u_a: { value: [255, 0, 0, 255] },
-          u_b: { value: [0, 0, 0, 255] },
+          u_time: { value: this.time },
         }}
         .beforeFrame=${(ctx) => {
           ctx.uniforms.u_x.value = this.x;
+          ctx.uniforms.u_time.value = this.x;
         }}
       ></shader-plane>
       <input
