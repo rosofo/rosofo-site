@@ -45,7 +45,7 @@ vec4 set(ivec2 varI, float value) {
 
 void main() {
     ivec2 size = textureSize(u_texture, 0);
-    ivec2 vX = var(100);
+    ivec2 vX = var(0);
     
     vec4 newX = set(vX, float(u_x));
     float x = get(vX);
@@ -54,6 +54,6 @@ void main() {
     if (texelCoord(gl_FragCoord).y > 0) {
         gl_FragColor = vec4(vec3(x), 1.0);
     } else {
-        gl_FragColor = newX;
+        gl_FragColor = newX + set(var(1), 1.0) + set(var(2), 1.0) + set(var(3), 1.0);
     }
 }
