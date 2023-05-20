@@ -49,10 +49,11 @@ void main() {
     vec4 newStart = started.x == 0.0 ? set(201, vec4(1.0)) : set(201, started);
 
     ivec2 sc = texelCoord(gl_FragCoord);
-    vec4 lineColor = vec4(length(vec2(u_p1 - sc)) / float(size.x));
+    float distP1 = length(vec2(u_p1 - sc)) / float(size.x);
+    float distP2 = length(vec2(u_p2 - sc)) / float(size.x);
 
     if(texelCoord(gl_FragCoord).y > 10) {
-        gl_FragColor = lineColor + setTexel(u_p1, vec4(1.0f, 0.0f, 0.0f, 1.0f));
+        gl_FragColor = vec4(distP1, 0.0, distP2, 1.0);
     } else if(texelCoord(gl_FragCoord).y > 0) {
         gl_FragColor = debugColor(0, x) + debugColor(1, started);
     } else {
