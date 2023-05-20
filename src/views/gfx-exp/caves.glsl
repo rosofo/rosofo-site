@@ -24,7 +24,7 @@ vec4 getScreenTexel(vec4 coord) {
 }
 
 ivec2 var(int index) {
-    int texelIndex = index / 4;
+    int texelIndex = int(float(index) / 4.0);
     int componentIndex = int(mod(float(index), 4.0));
     return ivec2(texelIndex, componentIndex);
 }
