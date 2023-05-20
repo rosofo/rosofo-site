@@ -60,7 +60,7 @@ void main() {
     if(texelCoord(gl_FragCoord).y > 10) {
         gl_FragColor = lineColor;
     } else if(texelCoord(gl_FragCoord).y > 0) {
-        gl_FragColor = debugColor(0, x) + debugColor(1, started) + debugColor(2, get(202)) + debugColor(3, get(203));
+        gl_FragColor = debugColor(0, x) + debugColor(1, started) + debugColor(2, vec4(get(202).x / float(size.x))) + debugColor(3, get(203));
     } else {
         gl_FragColor = newX + newStart + newfa + newfb;
     }
