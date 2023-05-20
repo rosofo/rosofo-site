@@ -28,7 +28,7 @@ float modI(float a,float b) {
 }
 ivec2 var(int index) {
     int texelIndex = int(floor(float(index) / 4.0));
-    int componentIndex = 0;  // test
+    int componentIndex = int(modI(float(index), 4.0));
     return ivec2(texelIndex, componentIndex);
 }
 
