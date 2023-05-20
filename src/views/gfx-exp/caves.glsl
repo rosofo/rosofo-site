@@ -25,7 +25,7 @@ vec4 getScreenTexel(vec4 coord) {
 
 ivec2 var(int index) {
     int texelIndex = index / 4;
-    int componentIndex = mod(index, 4);
+    int componentIndex = int(mod(float(index), 4.0));
     return ivec2(texelIndex, componentIndex);
 }
 
@@ -43,5 +43,5 @@ vec4 set(ivec2 varI, float value) {
 void main() {
     ivec2 size = textureSize(u_texture, 0);
     ivec2 vA = var(u_x);
-    gl_FragColor = newA + newB;
+    gl_FragColor = vec4(0.0);
 }
