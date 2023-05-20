@@ -1,5 +1,5 @@
 uniform sampler2D u_texture;
-uniform int u_x;
+uniform float u_x;
 uniform vec4 u_a;
 uniform vec4 u_b;
 
