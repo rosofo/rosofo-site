@@ -23,12 +23,12 @@ vec4 getScreenTexel(vec4 coord) {
     return texelFetch(u_texture, texelCoord(coord), 0);
 }
 
-float get(int index) {
+vec4 get(int index) {
     return texelFetch(u_texture, ivec2(index, 0), 0);
 }
 
-vec4 set(ivec2 varI, vec4 value) {
-    return setTexel(ivec2(varI.x, 0), value);
+vec4 set(int index, vec4 value) {
+    return setTexel(ivec2(index, 0), value);
 }
 
 void main() {
@@ -36,7 +36,6 @@ void main() {
     
     vec4 newX = set(0, vec4(u_x));
     vec4 x = get(0);
-    vec4 newA = setTexel(ivec2(x, size.y / 2), u_a);
     
     if (texelCoord(gl_FragCoord).y > 0) {
         gl_FragColor = x;
