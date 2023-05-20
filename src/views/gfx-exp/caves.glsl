@@ -29,9 +29,19 @@ ivec2 var(int index) {
     return ivec2(texelIndex, componentIndex);
 }
 
+float get(ivec2 varI) {
+    vec4 nibble = texelFetch(u_texture, ivec2(varI.x, 0), 0);
+    return nibble[varI.y];
+}
+
+vec4 set(ivec2 varI, float value) {
+    vec4 nibble = texelFetch(u_texture, ivec2(varI.x, 0), 0);
+    nibble[varI.y] = value;
+    return setTexel(ivec2(varI.x, 0), nibble);
+}
+
 void main() {
     ivec2 size = textureSize(u_texture, 0);
-    vec4 newA = setTexel(ivec2(u_x, size.y / 2), u_a);
-    vec4 newB = setTexel(ivec2(u_x + 3, size.y / 2), texelFetch(u_texture, ivec2(u_x, size.y / 2), 0));
+    ivec2 vA = var(u_x);
     gl_FragColor = newA + newB;
 }
