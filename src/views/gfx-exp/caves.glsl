@@ -1,5 +1,6 @@
 uniform sampler2D u_texture;
-uniform float u_time;
+uniform vec4 u_a;
+uniform vec4 u_b;
 
 float rand(vec2 co) {
     return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
@@ -55,5 +56,5 @@ void main() {
     vec4 a = getVar(100);
     vec4 b = getVar(102);
     
-    gl_FragColor = setVar(100, vec4(1.0)) + saveColor(a + b);
+    gl_FragColor = saveColor(a + b);
 }
