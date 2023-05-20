@@ -45,7 +45,7 @@ void main() {
     vec4 x = get(200);
     
     vec4 start = get(201);
-    vec4 newStart = start.x == 0.0 ? set(201, vec4(1.0)) : start;
+    vec4 newStart = start.w == 0.0 ? set(201, vec4(1.0)) : start;
     
     if (texelCoord(gl_FragCoord).y > 10) {
         gl_FragColor = vec4(0.0);
