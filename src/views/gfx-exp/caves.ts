@@ -32,6 +32,8 @@ export class GfxCaves extends LitElement {
       ></shader-plane>
       <input
         type="slider"
+        min="0"
+        max="199"
         onInput=${(event: InputEvent) => this.moveX(event.currentTarget?.value)}
       />
     `;
