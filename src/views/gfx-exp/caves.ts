@@ -35,7 +35,9 @@ export class GfxCaves extends LitElement {
         min="0"
         max="199"
         step="1"
-        onInput=${(event: InputEvent) => this.moveX(event.currentTarget?.value)}
+        onInput=${(event: InputEvent) => {
+          this.moveX(event.currentTarget?.value);
+        }}
       />
     `;
   }
