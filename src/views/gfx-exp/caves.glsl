@@ -8,7 +8,7 @@ float rand(vec2 co) {
 }
 
 ivec2 texelCoord(vec4 coord) {
-    return ivec2(coord.x / 3.0f, coord.y / 2.4f);
+    return ivec2(coord.x, coord.y);
 }
 
 vec4 setTexel(ivec2 coord, vec4 color) {

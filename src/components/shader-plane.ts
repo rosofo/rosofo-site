@@ -42,7 +42,7 @@ export class ShaderPlane extends LitElement {
     const camera = new THREE.PerspectiveCamera(80, 1);
 
     const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(600, 400);
+    renderer.setSize(this.textureWidth, this.textureHeight);
 
     elem.appendChild(renderer.domElement);
 
