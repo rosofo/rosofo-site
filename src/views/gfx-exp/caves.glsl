@@ -38,29 +38,27 @@ vec4 debugColor(int index, vec4 value) {
     return gl_FragCoord.x >= findex && gl_FragCoord.x < findex + 8.0 ? value : vec4(0.0);
 }
 
-void render(vec4[A] colors, vec4[B] debugColors, vec4[C] newValues) {
-    vec4 color = vec4(0.0);
-    for(int i = 0; i < colors.length(); i++) {
-        color += colors[i];
-    }
-
-    vec4 debugColor = vec4(0.0);
-    for(int i = 0; i < debugColors.length(); i++) {
-        debugColor += debugColors[i];
-    }
-
-    vec4 newValue = vec4(0.0);
-    for(int i = 0; i < newValues.length(); i++) {
-        newValue += newValues[i];
-    }
-
-    if(texelCoord(gl_FragCoord).y > 10) {
-        gl_FragColor = color;
-    } else if(texelCoord(gl_FragCoord).y > 0) {
-        gl_FragColor = debugColor;
-    } else {
-        gl_FragColor = newValue;
-    }
+#define render(A, B, C) render(A, B, C) \
+void render(vec4[A] colors, vec4[B] debugColors, vec4[C] newValues) { \
+    vec4 color = vec4(0.0f); \
+    for(int i = 0; i < colors.length(); i++) { \
+        color += colors[i]; \
+    } \
+    vec4 debugColor = vec4(0.0); \
+    for(int i = 0; i < debugColors.length(); i++) { \
+        debugColor += debugColors[i]; \
+    } \
+    vec4 newValue = vec4(0.0); \
+    for(int i = 0; i < newValues.length(); i++) { \
+        newValue += newValues[i]; \
+    } \
+    if(texelCoord(gl_FragCoord).y > 10) { \
+        gl_FragColor = color; \
+    } else if(texelCoord(gl_FragCoord).y > 0) { \
+        gl_FragColor = debugColor; \
+    } else { \
+        gl_FragColor = newValue; \
+    } \
 }
 
 void main() {
