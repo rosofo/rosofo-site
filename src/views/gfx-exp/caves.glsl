@@ -44,14 +44,14 @@ void main() {
     vec4 newX = set(200, vec4(u_x));
     vec4 x = get(200);
 
-    vec4 start = get(201);
-    vec4 newStart = start.x == 0.0 ? set(201, vec4(1.0)) : start;
+    vec4 started = get(201);
+    vec4 newStart = started.x == 0.0 ? set(201, vec4(1.0)) : set(201, started);
 
     if(texelCoord(gl_FragCoord).y > 10) {
         gl_FragColor = vec4(0.0);
     } else if(texelCoord(gl_FragCoord).y > 0) {
-        gl_FragColor = debugColor(0, x) + debugColor(1, start);
+        gl_FragColor = debugColor(0, x) + debugColor(1, started);
     } else {
-        gl_FragColor = newX;
+        gl_FragColor = newX + newStart;
     }
 }
