@@ -1,3 +1,5 @@
+#version 100
+
 uniform sampler2D u_texture;
 uniform float u_x;
 uniform vec4 u_a;
