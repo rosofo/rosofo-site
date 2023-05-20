@@ -49,7 +49,7 @@ vec4 pickRandTexel() {
 
 void main() {
     bool isStart = getVar(0).w == 0.0;
-    vec4 newIsStart = setVar(0, vec4(vec3(0.0), 1.0));
+    vec4 newIsStart = setVar(0, vec4(vec3(0.0), 0.0));
     
     vec4 randomColorStart = _if(!varActive(), _if(isStart, vec4(vec3(rand(gl_FragCoord.xy)), 1.0)));
     
