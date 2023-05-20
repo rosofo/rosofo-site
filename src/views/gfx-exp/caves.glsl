@@ -19,7 +19,7 @@ vec4 setTexel(ivec2 coord, vec4 color) {
 }
 
 vec4 getTexel(vec4 coord) {
-    return texelFetch(u_texture, texelCoord(coord));
+    return texelFetch(u_texture, texelCoord(coord), 0);
 }
 
 void main() {
