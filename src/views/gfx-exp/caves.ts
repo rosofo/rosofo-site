@@ -2,8 +2,8 @@ import { LitElement, html, css } from "lit";
 import { customElement } from "lit/decorators.js";
 import frag from "./caves.glsl?raw";
 import "../../components/shader-plane";
-const WIDTH = 200;
-const HEIGHT = 200;
+const WIDTH = 400;
+const HEIGHT = 400;
 
 @customElement("gfx-caves")
 export class GfxCaves extends LitElement {
