@@ -37,9 +37,8 @@ vec4 debugColor(int index, vec4 value) {
     return gl_FragCoord.x >= findex && gl_FragCoord.x < findex + 8.0 ? value : vec4(0.0);
 }
 
-vec4 spawn() {
-    ivec2 randomCoord = ivec2(rand(vec2(gl_FragCoord.x, u_time)) * 200.0, rand(vec2(gl_FragCoord.y, u_time)) * 200.0);
-    return setTexel(randomCoord, vec4(1.0));
+ivec2 spawn(float t) {
+    return ivec2(rand(vec2(sin(t), t)) * 200.0, rand(vec2(t, cos(t))) * 200.0);
 }
 
 void main() {
@@ -51,17 +50,14 @@ void main() {
     vec4 started = get(201);
     vec4 newStart = started.x == 0.0 ? set(201, vec4(1.0)) : set(201, started);
 
-    vec4 spawnColor = vec4(0.0);
-    spawnColor = spawn();
-
-    ivec2 sc = texelCoord(gl_FragCoord);
-    vec4 neighborGrow = setTexel(sc, texelFetch(u_texture, ivec2(sc.x, sc.y - 1), 0).x > 0.0 ? vec4(1.0) : getScreenTexel(gl_FragCoord));
+    vec4 newfa = set(202, vec4(spawn(u_time).xy, 0.0, 0.0));
+    vec4 newfb = set(203, vec4(spawn(u_time).xy, 0.0, 0.0));
 
     if(texelCoord(gl_FragCoord).y > 10) {
-        gl_FragColor = spawnColor + neighborGrow;
+        gl_FragColor = vec4(0.0);
     } else if(texelCoord(gl_FragCoord).y > 0) {
         gl_FragColor = debugColor(0, x) + debugColor(1, started);
     } else {
-        gl_FragColor = newX + newStart;
+        gl_FragColor = newX + newStart + newfa + newfb;
     }
 }
