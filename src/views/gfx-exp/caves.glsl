@@ -58,9 +58,9 @@ void main() {
     vec4 lineColor = vec4(length(vec2(fa - sc)) / float(size.x));
 
     if(texelCoord(gl_FragCoord).y > 10) {
-        gl_FragColor = lineColor;
+        gl_FragColor = lineColor + setTexel(fa, vec4(1.0, 0.0, 0.0, 1.0));
     } else if(texelCoord(gl_FragCoord).y > 0) {
-        gl_FragColor = debugColor(0, x) + debugColor(1, started) + debugColor(2, vec4(get(202).x / float(size.x))) + debugColor(3, get(203));
+        gl_FragColor = debugColor(0, x) + debugColor(1, started);
     } else {
         gl_FragColor = newX + newStart + newfa + newfb;
     }
