@@ -20,7 +20,9 @@ export class GfxCaves extends LitElement {
         textureHeight=${HEIGHT}
         frag=${frag}
         .uniforms=${{ u_time: { value: 0 } }}
-        .beforeFrame=${(ctx) => {}}
+        .beforeFrame=${(ctx) => {
+          ctx.uniforms.u_time.value += 0.01;
+        }}
       ></shader-plane>
     `;
   }
