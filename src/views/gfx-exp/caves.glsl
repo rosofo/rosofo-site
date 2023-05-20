@@ -53,7 +53,7 @@ void main() {
     float distP2 = length(vec2(u_p2 - sc)) / float(size.x);
 
     if(texelCoord(gl_FragCoord).y > 10) {
-        gl_FragColor = vec4(distP1 + (sin(distP2) + 1.0) / 2.0, 0.0, 0.0, 1.0);
+        gl_FragColor = vec4(0.0, 0.0, pow(distP1, 2.0), 1.0);
     } else if(texelCoord(gl_FragCoord).y > 0) {
         gl_FragColor = debugColor(0, x) + debugColor(1, started);
     } else {
