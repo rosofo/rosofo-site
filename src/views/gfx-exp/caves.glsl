@@ -23,5 +23,7 @@ vec4 getTexel(vec4 coord) {
 }
 
 void main() {
-    gl_FragColor = setTexel(ivec2(100, 100), u_a);
+    vec4 newA = setTexel(ivec2(100, 100), u_a);
+    vec4 newA_ = setTexel(ivec2(101, 100), getTexel(ivec2(100, 100)));
+    gl_FragColor = newA;
 }
