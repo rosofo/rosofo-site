@@ -14,6 +14,10 @@ vec4 setTexel(ivec2 coord, vec4 color) {
     return color * float(texelActive(coord));
 }
 
+vec4 getTexel(vec4 coord) {
+    return texelFetch(u_texture, ivec2(coord.x / 3.0f, coord.y / 2.4f), 0);
+}
+
 vec4 getCurrentTexel() {
     return texelFetch(u_texture, ivec2(gl_FragCoord.x / 3.0f, gl_FragCoord.y / 2.4f), 0);
 }
@@ -39,13 +43,18 @@ bool varActive() {
     return c.y == 0;
 }
 
+vec4 pickRandTexel() {
+    return texelFetch(u_texture, ivec2(rand(gl_FragCoord.xy) * 200.0, rand(gl_FragCoord.xy) * 200.0), 0);
+}
+
 void main() {
     bool isStart = getVar(0).w == 0.0;
     vec4 newIsStart = setVar(0, vec4(vec3(0.0), 1.0));
     
     vec4 randomColorStart = _if(!varActive(), _if(isStart, vec4(vec3(rand(gl_FragCoord.xy)), 1.0)));
     
-    vec4 transformed = getCurrentTexel() + vec4(0.01);
+    vec4 texel = pickRandTexel();
+    vec4 transformed = getCurrentTexel() + (texel * getVar(1).x);
     
     bool invalidStart = getVar(0).w < 1.0 && getVar(0).w > 0.0;
     gl_FragColor = transformed + (newIsStart + randomColorStart) + setVar(100, _if(!invalidStart, vec4(1.0, 0.0, 0.0, 1.0)));
