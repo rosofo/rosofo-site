@@ -39,7 +39,7 @@ export class ShaderPlane extends LitElement {
   }
   start(elem: Element) {
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(80, 1);
+    const camera = new THREE.OrthographicCamera();
 
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(this.textureWidth, this.textureHeight);
@@ -59,7 +59,6 @@ export class ShaderPlane extends LitElement {
     });
     const plane = new THREE.Mesh(new THREE.PlaneGeometry(), this.material);
     scene.add(plane);
-    camera.position.z = 0.6;
 
     const targetA = new THREE.WebGLRenderTarget(
       this.textureWidth,
