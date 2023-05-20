@@ -27,13 +27,14 @@ export class GfxCaves extends LitElement {
           u_b: { value: [0, 0, 0, 255] },
         }}
         .beforeFrame=${(ctx) => {
-          ctx.uniforms.u_x = { value: this.x };
+          ctx.uniforms.u_x.value = this.x;
         }}
       ></shader-plane>
       <input
-        type="slider"
+        type="range"
         min="0"
         max="199"
+        step="1"
         onInput=${(event: InputEvent) => this.moveX(event.currentTarget?.value)}
       />
     `;
