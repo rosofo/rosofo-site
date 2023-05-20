@@ -5,6 +5,8 @@ uniform float u_x;
 uniform vec4 u_a;
 uniform vec4 u_b;
 
+const int arrSize = 20;
+
 float rand(vec2 co) {
     return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
 }
@@ -38,7 +40,7 @@ vec4 debugColor(int index, vec4 value) {
     return gl_FragCoord.x >= findex && gl_FragCoord.x < findex + 8.0 ? value : vec4(0.0);
 }
 
-vec4 render (vec4[] colors, vec4[] debugColors, vec4[] newValues) {
+vec4 render (vec4[arrSize] colors, vec4[arrSize] debugColors, vec4[arrSize] newValues) {
     vec4 color = vec4(0.0);
     for (int i = 0; i < colors.length(); i++) {
         color += colors[i];
@@ -73,8 +75,8 @@ void main() {
     vec4 newStart = started.w == 0.0 ? set(201, vec4(1.0)) : started;
     
     gl_FragColor = render(
-        vec4[20](vec4(0.0)),
-        vec4[20](debugColor(0, x), debugColor(1, started)),
-        vec4[20](newX, newStart)
+        vec4[arrSize]vec4(0.0)),
+        vec4[arrSize](debugColor(0, x), debugColor(1, started)),
+        vec4[arrSize](newX, newStart)
     );
 }
