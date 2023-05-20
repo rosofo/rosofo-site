@@ -33,7 +33,7 @@ export class GfxCaves extends LitElement {
       <input
         type="range"
         min="0"
-        max="199"
+        max=${WIDTH - 1}
         step="1"
         @input=${(event: InputEvent) => {
           this.moveX(event.currentTarget?.value);
