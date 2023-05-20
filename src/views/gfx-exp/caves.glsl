@@ -11,7 +11,11 @@ ivec2 texelCoord(vec4 coord) {
 }
 
 vec4 setTexel(ivec2 coord, vec4 color) {
-    return color * float(texelActive(coord));
+    if (coord == texelCoord(gl_FragColor)) {
+        return color;
+    } else {
+        return vec4(0.0);
+    }
 }
 
 vec4 getTexel(vec4 coord) {
