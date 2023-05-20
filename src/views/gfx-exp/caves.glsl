@@ -50,13 +50,13 @@ void main() {
     vec4 started = get(201);
     vec4 newStart = started.x == 0.0 ? set(201, vec4(1.0)) : set(201, started);
 
-    vec4 newfa = set(202, vec4(spawn(u_time).xy, 0.0, 0.0));
-    vec4 newfb = set(203, vec4(spawn(u_time).xy, 0.0, 0.0));
+    vec4 newfa = set(202, vec4(spawn(u_time).xy, 0.0, 1.0));
+    vec4 newfb = set(203, vec4(spawn(u_time).xy, 0.0, 1.0));
 
     if(texelCoord(gl_FragCoord).y > 10) {
         gl_FragColor = vec4(0.0);
     } else if(texelCoord(gl_FragCoord).y > 0) {
-        gl_FragColor = debugColor(0, x) + debugColor(1, started);
+        gl_FragColor = debugColor(0, x) + debugColor(1, started) + debugColor(2, get(202)) + debugColor(3, get(203));
     } else {
         gl_FragColor = newX + newStart + newfa + newfb;
     }
