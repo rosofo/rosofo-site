@@ -70,5 +70,5 @@ void main() {
     vec4 started = get(201);
     vec4 newStart = started.w == 0.0 ? set(201, vec4(1.0)) : started;
 
-    render(vec4[1](vec4(0.0)), vec4[2](debugColor(0, x), debugColor(1, started)), vec4[2](newX, newStart));
+    render(1, 2, 2) (vec4[1](vec4(0.0)), vec4[2](debugColor(0, x), debugColor(1, started)), vec4[2](newX, newStart));
 }
