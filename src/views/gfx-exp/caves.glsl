@@ -6,6 +6,7 @@ uniform sampler2D u_texture;
 uniform float u_x;
 uniform float u_time;
 uniform ivec2 u_p1;
+uniform vec2 u_mouse;
 
 float rand(vec2 co) {
     return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
@@ -57,7 +58,8 @@ void main() {
     vec4 started = get(201);
     vec4 newStart = started.x == 0.0 ? set(201, vec4(1.0)) : set(201, started);
 
-    ivec2 p2 = getP(202);
+    // ivec2 p2 = getP(202);
+    ivec2 p2 = ivec2(u_mouse.x * float(size.x), u_mouse.y * float(size.y));
     vec4 newP2 = setP(202, ivec2(cos(u_x * 2.0 * PI) * 20.0, sin(u_x * 2.0 * PI) * 20.0) + u_p1);
 
     ivec2 sc = texelCoord(gl_FragCoord);
