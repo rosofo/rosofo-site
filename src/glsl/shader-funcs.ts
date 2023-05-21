@@ -9,5 +9,5 @@ export const defineFuncs = (funcs: Record<string, Func>) => {
   const callers = Object.fromEntries(
     Object.entries(funcs).map(([name, func]) => [name, func.caller])
   );
-  return { defs, callers };
+  return { defs, ...callers };
 };
