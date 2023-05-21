@@ -35,6 +35,14 @@ vec4 set(int index, vec4 value) {
     return setTexel(ivec2(index, 0), value);
 }
 
+vec4 setP(int index, ivec2 value) {
+    return setTexel(ivec2(index, 0), vec4(float(value.x) / float(textureSize(u_texture, 0)), float(value.y) / float(textureSize(u_texture, 0), 0.0, 1.0)));
+}
+
+ivec2 getP(int index, vec4 value) {
+    return ivec2(get(index, vec4(value.x / textureSize(u_texture, 0), value.y / textureSize(u_texture, 0), 0.0, 1.0));
+}
+
 vec4 debugColor(int index, vec4 value) {
     float findex = float(index) * 8.0;
     return gl_FragCoord.x >= findex && gl_FragCoord.x < findex + 8.0 ? value : vec4(0.0);
