@@ -53,11 +53,9 @@ void main() {
     ivec2 sc = texelCoord(gl_FragCoord);
     mat2 rot = mat2(cos(0.5 * PI), -sin(0.5 * PI), sin(0.5 * PI), cos(0.5 * PI));
     float dpM = dot(normalize(vec2(u_p2 - u_p1)), rot * normalize(vec2(sc - (u_p1 - u_p2) / 2)));
-    float dpB = dot(normalize(vec2(u_p2 - u_p1)), rot * normalize(vec2(sc - u_p1)));
-    float dpC = dot(normalize(vec2(u_p1 - u_p2)), rot * normalize(vec2(sc - u_p2)));
 
     if(texelCoord(gl_FragCoord).y > 10) {
-        gl_FragColor = abs(vec4(vec3(dpM), 1.0)) + 0.1 * dpB;
+        gl_FragColor = abs(vec4(vec3(dpM), 1.0)) - length(vec2(sc - u_p1)) * 0.001;
     } else if(texelCoord(gl_FragCoord).y > 0) {
         gl_FragColor = debugColor(0, x) + debugColor(1, started);
     } else {
