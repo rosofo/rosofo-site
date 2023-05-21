@@ -2,7 +2,7 @@ import { LitElement, html, css } from "lit";
 import { customElement } from "lit/decorators.js";
 import "../../components/shader-plane";
 import * as THREE from "three";
-import * as common from "../../glsl/common";
+import common from "../../glsl/common";
 import glsl from "glslify";
 const WIDTH = 400;
 const HEIGHT = 400;
@@ -14,11 +14,11 @@ precision highp float;
 
 uniform sampler2D u_texture;
 
-${common.texelCoord}
-${common.debugColor}
+${common.defs}
 
 void main() {
     ivec2 size = textureSize(u_texture, 0);
+    
 
     ${common.render({
       colors: ["vec4(0.0)"],
