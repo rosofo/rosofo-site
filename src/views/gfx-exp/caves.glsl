@@ -58,7 +58,7 @@ void main() {
     vec4 newStart = started.x == 0.0 ? set(201, vec4(1.0)) : set(201, started);
 
     ivec2 p2 = getP(202);
-    vec4 newP2 = setP(202, ivec2(u_x * 400.0, 50));
+    vec4 newP2 = setP(202, u_p1 - ivec2(cos(u_x * 2.0 * PI) * 400.0, sin(u_x * 2.0 * PI) * 400.0));
 
     ivec2 sc = texelCoord(gl_FragCoord);
     mat2 rot = mat2(cos(0.5 * PI), -sin(0.5 * PI), sin(0.5 * PI), cos(0.5 * PI));
