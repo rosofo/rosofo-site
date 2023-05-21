@@ -1,5 +1,7 @@
 precision highp float;
 
+#define PI 3.1415926535897932384626433832795
+
 uniform sampler2D u_texture;
 uniform float u_x;
 uniform float u_time;
@@ -49,7 +51,8 @@ void main() {
     vec4 newStart = started.x == 0.0 ? set(201, vec4(1.0)) : set(201, started);
 
     ivec2 sc = texelCoord(gl_FragCoord);
-    float dp = dot(normalize(vec2(u_p2 - u_p1)), normalize(vec2(sc - u_p1)));
+    mat2 rot = mat2(cos(0.5 * PI), -sin(0.5 * PI), sin(0.5 * PI), cos(0.5 * PI));
+    float dp = dot(normalize(vec2(u_p2 - u_p1)), rot * normalize(vec2(sc - u_p1)));
 
     if(texelCoord(gl_FragCoord).y > 10) {
         gl_FragColor = abs(vec4(vec3(dp), 1.0));
