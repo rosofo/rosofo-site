@@ -63,7 +63,7 @@ void main() {
     ivec2 sc = texelCoord(gl_FragCoord);
     mat2 qtTurn = mat2(cos(0.5 * PI), -sin(0.5 * PI), sin(0.5 * PI), cos(0.5 * PI));
     vec2 lineVec = vec2(p2 - u_p1);
-    vec2 rotAroundP1 = qtTurn * vec2(sc - u_p1);
+    vec2 rotAroundP1 = qtTurn * vec2(u_p1 - sc);
     vec4 line = dot(rotAroundP1, lineVec) == 0.0 ? vec4(1.0) : vec4(0.0);
 
     if(texelCoord(gl_FragCoord).y > 10) {
