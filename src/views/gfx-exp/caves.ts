@@ -2,7 +2,7 @@ import { LitElement, html, css } from "lit";
 import { customElement } from "lit/decorators.js";
 import frag from "./caves.glsl?raw";
 import "../../components/shader-plane";
-import THREE from "three";
+import * as THREE from "three";
 const WIDTH = 400;
 const HEIGHT = 400;
 
@@ -47,10 +47,12 @@ export class GfxCaves extends LitElement {
           u_x: { value: this.x },
           u_time: { value: this.x },
           u_p1: { value: [WIDTH / 2, HEIGHT / 2] },
+          u_mouse: { value: this.pointer },
         }}
         .beforeFrame=${(ctx) => {
           ctx.uniforms.u_x.value = this.x;
           ctx.uniforms.u_time.value = this.x;
+          ctx.uniforms.u_mouse.valoue = this.pointer;
         }}
       ></shader-plane>
       <input
