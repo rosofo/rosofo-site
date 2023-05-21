@@ -58,7 +58,7 @@ void main() {
     vec4 newStart = started.x == 0.0 ? set(201, vec4(1.0)) : set(201, started);
 
     ivec2 p2 = getP(202);
-    vec4 newP2 = setP(202, ivec2(cos(u_x * 2.0 * PI) * 100.0, sin(u_x * 2.0 * PI) * 100.0) + u_p1);
+    vec4 newP2 = setP(202, ivec2(cos(u_x * 2.0 * PI) * 20.0, sin(u_x * 2.0 * PI) * 20.0) + u_p1);
 
     ivec2 sc = texelCoord(gl_FragCoord);
     mat2 rot = mat2(cos(0.5 * PI), -sin(0.5 * PI), sin(0.5 * PI), cos(0.5 * PI));
@@ -67,7 +67,7 @@ void main() {
     vec4 fill = abs(vec4(vec3(dpM), 1.0)) - length(vec2(sc - u_p1)) * 0.003;
 
     if(texelCoord(gl_FragCoord).y > 10) {
-        gl_FragColor = fill + setTexel(p2, vec4(0.09f, 0.06f, 0.78f, 1.0f));
+        gl_FragColor = fill + setTexel(u_p1, vec4(0.09f, 0.06f, 0.78f, 1.0f));
     } else if(texelCoord(gl_FragCoord).y > 0) {
         gl_FragColor = debugColor(0, x) + debugColor(1, started) + debugColor(2, vec4(p2.x));
     } else {
