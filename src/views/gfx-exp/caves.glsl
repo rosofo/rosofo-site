@@ -40,7 +40,7 @@ vec4 setP(int index, ivec2 value) {
 }
 
 ivec2 getP(int index, vec4 value) {
-    return ivec2(get(index, vec4(value.x / textureSize(u_texture, 0), value.y / textureSize(u_texture, 0), 0.0, 1.0));
+    return ivec2(get(index).x * textureSize(u_texture, 0), get(index).y * textureSize(u_texture, 0));
 }
 
 vec4 debugColor(int index, vec4 value) {
