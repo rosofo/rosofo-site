@@ -59,7 +59,7 @@ void main() {
     if(texelCoord(gl_FragCoord).y > 10) {
         gl_FragColor = abs(vec4(vec3(dpM), 1.0)) - length(vec2(sc - u_p1)) * 0.003;
     } else if(texelCoord(gl_FragCoord).y > 0) {
-        gl_FragColor = debugColor(0, x) + debugColor(1, started);
+        gl_FragColor = debugColor(0, x) + debugColor(1, started) + debugColor(2, vec4(p2, 0.0, 1.0)) + debugColor(3, vec4(u_p1, 0.0, 1.0));
     } else {
         gl_FragColor = newX + newStart + newP2;
     }
