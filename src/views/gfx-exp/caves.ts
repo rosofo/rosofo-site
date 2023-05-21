@@ -2,6 +2,7 @@ import { LitElement, html, css } from "lit";
 import { customElement } from "lit/decorators.js";
 import frag from "./caves.glsl?raw";
 import "../../components/shader-plane";
+import THREE from "three";
 const WIDTH = 400;
 const HEIGHT = 400;
 
@@ -12,6 +13,16 @@ export class GfxCaves extends LitElement {
       display: block;
     }
   `;
+
+  pointer = new THREE.Vector2();
+
+  onPointerMove(event: MouseEvent) {
+    // calculate pointer position in normalized device coordinates
+    // (-1 to +1) for both components
+
+    this.pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+    this.pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+  }
 
   x = 0;
   time = 0;
