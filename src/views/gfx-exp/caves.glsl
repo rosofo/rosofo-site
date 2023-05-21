@@ -50,6 +50,7 @@ void main() {
 
     ivec2 sc = texelCoord(gl_FragCoord);
     bool isOnLine = dot(vec2(sc - u_p1), vec2(u_p2 - u_p1)) == 0.0;
+    vec4 lineColor = isOnLine ? vec4(1.0) : vec4(0.0);
 
     if(texelCoord(gl_FragCoord).y > 10) {
         gl_FragColor = lineColor;
