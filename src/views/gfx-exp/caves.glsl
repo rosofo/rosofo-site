@@ -36,11 +36,11 @@ vec4 set(int index, vec4 value) {
 }
 
 vec4 setP(int index, ivec2 value) {
-    return setTexel(ivec2(index, 0), vec4(float(value.x) / float(textureSize(u_texture, 0)), float(value.y) / float(textureSize(u_texture, 0), 0.0, 1.0)));
+    return setTexel(ivec2(index, 0), vec4(float(value.x) / float(textureSize(u_texture, 0)), float(value.y) / float(textureSize(u_texture, 0)), 0.0, 1.0));
 }
 
-ivec2 getP(int index, vec4 value) {
-    return ivec2(get(index).x * textureSize(u_texture, 0), get(index).y * textureSize(u_texture, 0));
+ivec2 getP(int index) {
+    return ivec2(get(index).x * float(textureSize(u_texture, 0).x), get(index).y * float(textureSize(u_texture, 0).y));
 }
 
 vec4 debugColor(int index, vec4 value) {
@@ -57,8 +57,8 @@ void main() {
     vec4 started = get(201);
     vec4 newStart = started.x == 0.0 ? set(201, vec4(1.0)) : set(201, started);
 
-    ivec2 p2 = ivec2(get(202).xy);
-    vec4 newP2 = set(202, vec4(vec2(u_x * 400.0, 200.0), 0.0, 1.0));
+    ivec2 p2 = getP(202);
+    vec4 newP2 = setP(202, ivec2(u_x, 50));
 
     ivec2 sc = texelCoord(gl_FragCoord);
     mat2 rot = mat2(cos(0.5 * PI), -sin(0.5 * PI), sin(0.5 * PI), cos(0.5 * PI));
