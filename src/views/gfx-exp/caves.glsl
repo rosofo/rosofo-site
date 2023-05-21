@@ -3,10 +3,6 @@ precision highp float;
 #define PI 3.1415926535897932384626433832795
 
 uniform sampler2D u_texture;
-uniform float u_x;
-uniform float u_time;
-uniform ivec2 u_p1;
-uniform vec2 u_mouse;
 
 float rand(vec2 co) {
     return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
@@ -52,25 +48,11 @@ vec4 debugColor(int index, vec4 value) {
 void main() {
     ivec2 size = textureSize(u_texture, 0);
 
-    vec4 newX = set(200, vec4(u_x));
-    vec4 x = get(200);
-
-    vec4 started = get(201);
-    vec4 newStart = started.x == 0.0 ? set(201, vec4(1.0)) : set(201, started);
-
-    ivec2 p2 = getP(202);
-    vec4 newP2 = setP(202, ivec2(cos(u_x * 2.0 * PI) * 20.0, sin(u_x * 2.0 * PI) * 20.0) + u_p1);
-
-    ivec2 sc = texelCoord(gl_FragCoord);
-    mat2 qtTurn = mat2(cos(0.5 * PI), -sin(0.5 * PI), sin(0.5 * PI), cos(0.5 * PI));
-    vec3 lineVec = vec3(vec2(u_p1) - vec2(p2), 0.0);
-    vec4 line = dot(normalize(vec2(u_p1) - vec2(sc)), -normalize(vec2(p2) - vec2(sc))) >= 0.99 ? vec4(1.0) : vec4(0.0);
-
     if(texelCoord(gl_FragCoord).y > 10) {
-        gl_FragColor = line + setTexel(u_p1, vec4(0.09f, 0.06f, 0.78f, 1.0f)) + setTexel(p2, vec4(0.09f, 0.06f, 0.78f, 1.0f));
+        gl_FragColor = vec4(0.0);
     } else if(texelCoord(gl_FragCoord).y > 0) {
-        gl_FragColor = debugColor(0, x);
+        gl_FragColor = debugColor(0, vec4(0.0));
     } else {
-        gl_FragColor = newX + newStart + newP2;
+        gl_FragColor = vec4(0.0);
     }
 }
