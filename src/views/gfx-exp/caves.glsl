@@ -62,8 +62,6 @@ void main() {
 
     ivec2 sc = texelCoord(gl_FragCoord);
     mat2 qtTurn = mat2(cos(0.5 * PI), -sin(0.5 * PI), sin(0.5 * PI), cos(0.5 * PI));
-    ivec2 prevSC = ivec2(qtTurn * (vec2(sc) - (vec2(sc) * 1.1)));
-    p2 = texelFetch(u_texture, prevSC, 0).x > 0.0 ? prevSC : p2;
     vec3 lineVec = vec3(vec2(u_p1) - vec2(p2), 0.0);
     vec4 line = dot(normalize(vec2(u_p1) - vec2(sc)), -normalize(vec2(p2) - vec2(sc))) >= 0.99 ? vec4(1.0) : vec4(0.0);
 
