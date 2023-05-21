@@ -8,7 +8,7 @@ export const defineFuncs = <
   D extends Func
 >(
   funcs: F
-): { defs: string } & { [P in keyof S]: F[P] } => {
+): { defs: string } & { [P in keyof F]: F[P] } => {
   const defs = Object.values(funcs)
     .map((func) => func.definition)
     .join("\n");
