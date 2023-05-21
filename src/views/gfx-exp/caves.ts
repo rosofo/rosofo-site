@@ -24,6 +24,16 @@ export class GfxCaves extends LitElement {
     this.pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
   }
 
+  connectedCallback(): void {
+    super.connectedCallback();
+    window.addEventListener("pointermove", this.onPointerMove.bind(this));
+  }
+
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    window.removeEventListener("pointermove", this.onPointerMove.bind(this));
+  }
+
   x = 0;
   time = 0;
 
