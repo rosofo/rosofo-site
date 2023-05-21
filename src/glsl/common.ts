@@ -1,20 +1,20 @@
 import glsl from "glslify";
-import { defineFuncs } from "./shader-funcs";
+import { Func, defineFuncs, func } from "./shader-funcs";
 
-export default defineFuncs({
-  rand: {
-    definition: glsl`float rand(vec2 co) {
+const funcs = {
+  rand: func(
+    glsl`float rand(vec2 co) {
     return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
 }`,
-    caller: (co: string) => `rand(${co})`,
-  },
+    (co: string) => `rand(${co})`,
+),
 
-  texelCoord: {
-    definition: glsl`ivec2 texelCoord(vec4 coord) {
+  texelCoord: func(
+    glsl`ivec2 texelCoord(vec4 coord) {
     return ivec2(coord.x, coord.y);
 }`,
-    caller: (coord: string) => `texelCoord(${coord})`,
-  },
+    (coord: string) => `texelCoord(${coord})`,
+ ) },
 
   setTexel: {
     definition: glsl`vec4 setTexel(ivec2 coord, vec4 color) {
