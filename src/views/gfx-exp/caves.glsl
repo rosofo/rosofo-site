@@ -50,7 +50,7 @@ void main() {
 
     ivec2 sc = texelCoord(gl_FragCoord);
     ivec2 mp = u_p2 - u_p1;
-    float dp = dot(vec2(u_p1 - sc), vec2(mp));
+    float dp = dot(vec2(sc - u_p1), vec2(mp));
     bool isOnLine = dp == 0.0;
     vec4 lineColor = isOnLine ? vec4(0.5, 0.5, 1.0, 1.0) : vec4(0.0);
 
