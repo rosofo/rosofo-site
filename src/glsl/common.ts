@@ -41,10 +41,15 @@ export const debugColor = glsl`vec4 debugColor(int index, vec4 value) {
     return gl_FragCoord.x >= findex && gl_FragCoord.x < findex + 8.0 ? value : vec4(0.0);
 }`;
 
-export const render = glsl`if(texelCoord(gl_FragCoord).y > 10) {
-        gl_FragColor = vec4(0.0);
-    } else if(texelCoord(gl_FragCoord).y > 0) {
-        gl_FragColor = debugColor(0, vec4(0.0));
-    } else {
-        gl_FragColor = vec4(0.0);
-    }`;
+export const render = (subs: {
+  colors: string[];
+  debugColors: string[];
+  vars: string[];
+}) => glsl`
+if(texelCoord(gl_FragCoord).y > 10) {
+    gl_FragColor = vec4(0.0);
+} else if(texelCoord(gl_FragCoord).y > 0) {
+    gl_FragColor = debugColor(0, vec4(0.0));
+} else {
+    gl_FragColor = vec4(0.0);
+}`;
