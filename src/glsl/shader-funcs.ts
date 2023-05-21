@@ -12,7 +12,5 @@ export const func = <P extends Array<A>, A>(
   def: string,
   caller: (...args: P) => string
 ): Func<P, A> => {
-  const func: any = { ...caller };
-  func.definition = def;
-  return func;
+  return caller.bind({ definition: def }) as any;
 };
