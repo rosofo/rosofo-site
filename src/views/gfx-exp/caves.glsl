@@ -48,12 +48,14 @@ void main() {
     vec4 started = get(201);
     vec4 newStart = started.x == 0.0 ? set(201, vec4(1.0)) : set(201, started);
 
+    vec4 fill = started.x == 0.0 ? vec4(0.0, 0.0, 0.0, 1.0) : vec4(0.0);
+
     ivec2 sc = texelCoord(gl_FragCoord);
     bool isOnLine = dot(vec2(sc - u_p1), vec2(u_p2 - u_p1)) == 0.0;
     vec4 lineColor = isOnLine ? vec4(0.5, 0.5, 1.0, 1.0) : vec4(0.0);
 
     if(texelCoord(gl_FragCoord).y > 10) {
-        gl_FragColor = lineColor;
+        gl_FragColor = lineColor + fill;
     } else if(texelCoord(gl_FragCoord).y > 0) {
         gl_FragColor = debugColor(0, x) + debugColor(1, started);
     } else {
