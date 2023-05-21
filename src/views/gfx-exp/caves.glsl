@@ -6,7 +6,6 @@ uniform sampler2D u_texture;
 uniform float u_x;
 uniform float u_time;
 uniform ivec2 u_p1;
-uniform ivec2 u_p2;
 
 float rand(vec2 co) {
     return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
@@ -50,15 +49,18 @@ void main() {
     vec4 started = get(201);
     vec4 newStart = started.x == 0.0 ? set(201, vec4(1.0)) : set(201, started);
 
+    ivec2 p2 = ivec2(get(202).xy);
+    vec4 newP2 = set(202, vec4(u_p1 - ivec2(cos(u_x) * 100.0, sin(u_x) * 100.0), 0.0, 0.0));
+
     ivec2 sc = texelCoord(gl_FragCoord);
     mat2 rot = mat2(cos(0.5 * PI), -sin(0.5 * PI), sin(0.5 * PI), cos(0.5 * PI));
-    float dpM = dot(normalize(vec2(u_p2 - u_p1)), rot * normalize(vec2(sc - (u_p1 - u_p2) / 2)));
+    float dpM = dot(normalize(vec2(p2 - u_p1)), rot * normalize(vec2(sc - (u_p1 - p2) / 2)));
 
     if(texelCoord(gl_FragCoord).y > 10) {
         gl_FragColor = abs(vec4(vec3(dpM), 1.0)) - length(vec2(sc - u_p1)) * 0.003;
     } else if(texelCoord(gl_FragCoord).y > 0) {
         gl_FragColor = debugColor(0, x) + debugColor(1, started);
     } else {
-        gl_FragColor = newX + newStart;
+        gl_FragColor = newX + newStart + newP2;
     }
 }
