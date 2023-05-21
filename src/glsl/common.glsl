@@ -38,3 +38,5 @@ vec4 debugColor(int index, vec4 value) {
     float findex = float(index) * 8.0;
     return gl_FragCoord.x >= findex && gl_FragCoord.x < findex + 8.0 ? value : vec4(0.0);
 }
+
+#pragma glslify: export(get, set)
