@@ -59,7 +59,7 @@ void main() {
     vec4 newStart = started.x == 0.0 ? set(201, vec4(1.0)) : set(201, started);
 
     // ivec2 p2 = getP(202);
-    ivec2 p2 = ivec2(u_mouse.x * float(size.x), u_mouse.y * float(size.y));
+    ivec2 p2 = ivec2((vec2(u_mouse.x * float(size.x), u_mouse.y * float(size.y)) * 0.5) + vec2(0.5));
     vec4 newP2 = setP(202, ivec2(cos(u_x * 2.0 * PI) * 20.0, sin(u_x * 2.0 * PI) * 20.0) + u_p1);
 
     ivec2 sc = texelCoord(gl_FragCoord);
