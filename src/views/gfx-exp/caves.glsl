@@ -61,13 +61,13 @@ void main() {
     vec4 newP2 = setP(202, ivec2(cos(u_x * 2.0 * PI) * 20.0, sin(u_x * 2.0 * PI) * 20.0) + u_p1);
 
     ivec2 sc = texelCoord(gl_FragCoord);
-    mat2 rot = mat2(cos(0.5 * PI), -sin(0.5 * PI), sin(0.5 * PI), cos(0.5 * PI));
-    float dpM = sin(distance(vec2(sc), vec2(p2)) * 0.1);
-
-    vec4 fill = abs(vec4(vec3(dpM), 1.0));
+    mat2 qtTurn = mat2(cos(0.5 * PI), -sin(0.5 * PI), sin(0.5 * PI), cos(0.5 * PI));
+    vec2 lineVec = vec2(p2 - u_p1);
+    vec2 rotAroundP1 = qtTurn * vec2(u_p1 - sc);
+    vec4 line = dot(rotAroundP1, lineVec) == 0.0 ? vec4(1.0) : vec4(0.0);
 
     if(texelCoord(gl_FragCoord).y > 10) {
-        gl_FragColor = fill + setTexel(u_p1, vec4(0.09f, 0.06f, 0.78f, 1.0f)) + setTexel(p2, vec4(0.09f, 0.06f, 0.78f, 1.0f));
+        gl_FragColor = line + setTexel(u_p1, vec4(0.09f, 0.06f, 0.78f, 1.0f)) + setTexel(p2, vec4(0.09f, 0.06f, 0.78f, 1.0f));
     } else if(texelCoord(gl_FragCoord).y > 0) {
         gl_FragColor = debugColor(0, x) + debugColor(1, started) + debugColor(2, vec4(p2.x));
     } else {
