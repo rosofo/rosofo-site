@@ -52,7 +52,7 @@ void main() {
     float dp = dot(normalize(vec2(u_p2 - u_p1)), normalize(vec2(sc - u_p1)));
 
     if(texelCoord(gl_FragCoord).y > 10) {
-        gl_FragColor = vec4(vec3(dp), 1.0);
+        gl_FragColor = abs(vec4(vec3(dp), 1.0));
     } else if(texelCoord(gl_FragCoord).y > 0) {
         gl_FragColor = debugColor(0, x) + debugColor(1, started);
     } else {
