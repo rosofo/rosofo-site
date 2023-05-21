@@ -47,9 +47,9 @@ export const render = (subs: {
   vars: string[];
 }) => glsl`
 if(texelCoord(gl_FragCoord).y > 10) {
-    gl_FragColor = vec4(0.0);
+    gl_FragColor = ${subs.colors.join(" + ")};
 } else if(texelCoord(gl_FragCoord).y > 0) {
-    gl_FragColor = debugColor(0, vec4(0.0));
+    gl_FragColor = ${subs.debugColors.join(" + ")};
 } else {
-    gl_FragColor = vec4(0.0);
+    gl_FragColor = ${subs.vars.join(" + ")};
 }`;
