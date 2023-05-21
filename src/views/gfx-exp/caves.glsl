@@ -62,7 +62,7 @@ void main() {
 
     ivec2 sc = texelCoord(gl_FragCoord);
     mat2 rot = mat2(cos(0.5 * PI), -sin(0.5 * PI), sin(0.5 * PI), cos(0.5 * PI));
-    float dpM = sin(distance(vec2(sc), vec2(p2 - u_p1) * rot));
+    float dpM = sin(distance(vec2(sc), vec2(p2)) * 0.1);
 
     vec4 fill = abs(vec4(vec3(dpM), 1.0));
 
