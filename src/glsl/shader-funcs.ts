@@ -5,7 +5,7 @@ export type Func = {
 export class ShaderFuncs {
   funcs: Record<string, Func>;
   defs: string;
-  callers: Record<string, ((...args: any[]) => string)[]>;
+  callers: Record<string, (...args: any[]) => string>;
 
   constructor(funcs: Record<string, Func>) {
     this.funcs = funcs;
