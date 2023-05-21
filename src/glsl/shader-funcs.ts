@@ -2,9 +2,7 @@ export interface Func<P extends Array<A>, A> {
   definition: string;
   (...args: P): string;
 }
-export const defineFuncs = <P extends Array<A>, A>(
-  funcs: Func<P, A>[]
-): string => {
+export const defineFuncs = (funcs: Func<unknown[], unknown>[]): string => {
   return Object.values(funcs)
     .map((func) => func.definition)
     .join("\n");
