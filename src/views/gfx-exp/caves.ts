@@ -1,10 +1,30 @@
 import { LitElement, html, css } from "lit";
 import { customElement } from "lit/decorators.js";
-import frag from "./caves.glsl?raw";
 import "../../components/shader-plane";
 import * as THREE from "three";
+import glsl from "glslify";
 const WIDTH = 400;
 const HEIGHT = 400;
+
+const frag = glsl`
+precision highp float;
+
+#define PI 3.1415926535897932384626433832795
+
+uniform sampler2D u_texture;
+
+void main() {
+    ivec2 size = textureSize(u_texture, 0);
+
+    if(texelCoord(gl_FragCoord).y > 10) {
+        gl_FragColor = vec4(0.0);
+    } else if(texelCoord(gl_FragCoord).y > 0) {
+        gl_FragColor = debugColor(0, vec4(0.0));
+    } else {
+        gl_FragColor = vec4(0.0);
+    }
+}
+`;
 
 @customElement("gfx-caves")
 export class GfxCaves extends LitElement {
