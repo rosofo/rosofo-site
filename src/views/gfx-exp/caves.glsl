@@ -55,10 +55,9 @@ void main() {
     float dpM = dot(normalize(vec2(u_p2 - u_p1)), rot * normalize(vec2(sc - (u_p1 - u_p2) / 2)));
     float dpB = dot(normalize(vec2(u_p2 - u_p1)), rot * normalize(vec2(sc - u_p1)));
     float dpC = dot(normalize(vec2(u_p1 - u_p2)), rot * normalize(vec2(sc - u_p2)));
-    float dp = dpM;
 
     if(texelCoord(gl_FragCoord).y > 10) {
-        gl_FragColor = abs(vec4(vec3(dp), 1.0));
+        gl_FragColor = abs(vec4(vec3(dpM), 1.0)) + 0.1 * dpB;
     } else if(texelCoord(gl_FragCoord).y > 0) {
         gl_FragColor = debugColor(0, x) + debugColor(1, started);
     } else {
