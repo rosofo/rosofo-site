@@ -20,13 +20,11 @@ ${common.debugColor}
 void main() {
     ivec2 size = textureSize(u_texture, 0);
 
-    if(texelCoord(gl_FragCoord).y > 10) {
-        gl_FragColor = vec4(0.0);
-    } else if(texelCoord(gl_FragCoord).y > 0) {
-        gl_FragColor = debugColor(0, vec4(0.0));
-    } else {
-        gl_FragColor = vec4(0.0);
-    }
+    ${common.render({
+      colors: ["vec4(0.0)"],
+      debugColors: ["debugColor(0, vec4(0.0))"],
+      vars: ["vec4(0.0)"],
+    })}
 }
 `;
 
