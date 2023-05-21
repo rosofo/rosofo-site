@@ -9,3 +9,12 @@ export const defineFuncs = <P extends Array<string>>(
     .map((func) => func.definition)
     .join("\n");
 };
+
+export const func = <P extends Array<string>>(
+  def: string,
+  caller: (...args: P) => string
+): Func<P> => {
+  const func: any = { ...caller };
+  func.definition = def;
+  return func;
+};
