@@ -12,8 +12,8 @@ export const defineFuncs = <
   const defs = Object.values(funcs)
     .map((func) => func.definition)
     .join("\n");
-  const callers = Object.fromEntries(
+  const callers: { [P in keyof F]: F[P] } = Object.fromEntries(
     Object.entries(funcs).map(([name, func]) => [name, func.caller])
-  );
-  return { defs, ...callers };
+  ) as any;
+  return Object.assign(callers, { defs });
 };
