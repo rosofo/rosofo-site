@@ -1,16 +1,16 @@
-export type Func<P extends any[]> = {
+export type Func<P extends A[], A> = {
   def: string;
   caller: (...args: P) => string;
 };
 
-export const func = <P extends any[]>(
+export const func = <P extends A[], A>(
   def: string,
   caller: (...args: P) => string
-): Func<P> => ({
+): Func<P, A> => ({
   def,
   caller,
 });
 
-export const defineFuncs = <P extends any[]>(funcs: Func<P>[]) => {
+export const defineFuncs = <P extends A[], A>(funcs: Func<P, A>[]) => {
   return funcs.map((f) => f.def).join("\n");
 };
