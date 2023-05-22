@@ -8,11 +8,11 @@ export type Func<T, U = unknown, V = unknown> = {
   | { (a: T, b: U, c: V): string }
 );
 
-export const func = <P>(
+export const func = <T, U = unknown, V = unknown>(
   def: string,
-  caller: (...args: P[]) => string
-): Func<P> => {
-  const f = (...args: P[]) => caller(...args);
+  caller: Omit<Func<T, U, V>, "def">
+): Func<T, U, V> => {
+  const f: Func<T, U, V> = (...args) => caller(...args);
   f.def = def;
   return f;
 };
