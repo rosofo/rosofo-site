@@ -11,6 +11,6 @@ export const func = <P extends any[]>(
   caller,
 });
 
-export const defineFuncs = <P extends any[]>(...funcs: Func<P>[]) => {
+export const defineFuncs = <P extends any[]>(funcs: Func<P>[]) => {
   return funcs.map((f) => f.def).join("\n");
 };
