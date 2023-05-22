@@ -1,7 +1,7 @@
-export type Func<P> = {
+export interface Func<P> {
   def: string;
-  caller: (...args: P[]) => string;
-};
+  (...args: P[]): string;
+}
 
 export const func = <P>(
   def: string,
