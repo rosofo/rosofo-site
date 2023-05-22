@@ -6,11 +6,11 @@ export interface Func<P> {
 export const func = <P>(
   def: string,
   caller: (...args: P[]) => string
-): Func<P> => ({
-  def,
-  caller,
-});
-
+): Func<P> => {
+  const f = (...args: P[]) => caller(...args);
+  f.def = def;
+  return f;
+};
 export const defineFuncs = (funcs: Func<any>[]) => {
   return funcs.map((f) => f.def).join("\n");
 };
