@@ -11,6 +11,6 @@ export const func = <P>(
   caller,
 });
 
-export const defineFuncs = <P>(funcs: Func<P>[]) => {
+export const defineFuncs = (funcs: Func<any>[]) => {
   return funcs.map((f) => f.def).join("\n");
 };
