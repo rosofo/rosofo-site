@@ -1,7 +1,12 @@
-export interface Func<P> {
+export type Func<T, U = unknown, V = unknown> = {
   def: string;
-  (...args: P[]): string;
-}
+} & (
+  | {
+      (a: T): string;
+    }
+  | { (a: T, b: U): string }
+  | { (a: T, b: U, c: V): string }
+);
 
 export const func = <P>(
   def: string,
