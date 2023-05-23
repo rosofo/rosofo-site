@@ -1,6 +1,6 @@
 import glsl from "glslify";
 
-const defs = glsl`
+export const defs = glsl`
 float rand(vec2 co) {
     return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
 }
@@ -38,18 +38,19 @@ vec4 debugColor(int index, vec4 value) {
     return gl_FragCoord.x >= findex && gl_FragCoord.x < findex + 8.0 ? value : vec4(0.0);
 }
 `;
-const rand = (co: string) => `rand(${co})`;
-const texelCoord = (coord: string) => `texelCoord(${coord})`;
-const setTexel = (coord: string, color: string) =>
+export const rand = (co: string) => `rand(${co})`;
+export const texelCoord = (coord: string) => `texelCoord(${coord})`;
+export const setTexel = (coord: string, color: string) =>
   `setTexel(${coord}, ${color})`;
-const getScreenTexel = (coord: string) => `getScreenTexel(${coord})`;
-const get = (index: string) => `get(${index})`;
-const set = (index: string, value: string) => `set(${index}, ${value})`;
-const debugColor = (index: string, value: string) =>
+export const getScreenTexel = (coord: string) => `getScreenTexel(${coord})`;
+export const get = (index: string) => `get(${index})`;
+export const set = (index: string, value: string) => `set(${index}, ${value})`;
+export const debugColor = (index: string, value: string) =>
   `debugColor(${index}, ${value})`;
-const setP = (index: string, value: string) => `setP(${index}, ${value})`;
-const getP = (index: string) => `getP(${index})`;
-const render = (subs: {
+export const setP = (index: string, value: string) =>
+  `setP(${index}, ${value})`;
+export const getP = (index: string) => `getP(${index})`;
+export const render = (subs: {
   colors: string[];
   debugColors: string[];
   vars: string[];
