@@ -19,10 +19,10 @@ ${common.defs}
 void main() {
     ivec2 size = textureSize(u_texture, 0);
     
-    vec4 bw = ${common.texelCoord("gl_FragCoord")}
+    vec4 bw = mod(floor(gl_FragCoord.x), 2.0) == 0.0 ? vec4(sin(gl_FragCoord.x)) : vec4(0.0);
 
     ${common.render({
-      colors: ["vec4(0.0)"],
+      colors: ["bw"],
       debugColors: ["debugColor(0, vec4(0.0))"],
       vars: ["vec4(0.0)"],
     })}

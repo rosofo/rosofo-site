@@ -28,6 +28,7 @@ vec4 set(int index, vec4 value) {
 
 vec4 setP(int index, ivec2 value) {
     return setTexel(ivec2(index, 0), vec4(float(value.x) / float(textureSize(u_texture, 0)), float(value.y) / float(textureSize(u_texture, 0)), 0.0, 1.0));
+}
 
 ivec2 getP(int index) {
     return ivec2(get(index).x * float(textureSize(u_texture, 0).x), get(index).y * float(textureSize(u_texture, 0).y));
