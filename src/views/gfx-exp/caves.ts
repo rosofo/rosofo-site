@@ -46,7 +46,8 @@ void main() {
     )}.y == size.y / 2 ? vec4(1.0) : vec4(0.0);
     
     vec4 randColor = vec4(${common.rand("vec2(u_t, gl_FragCoord.x)")});
-    vec4 eroded = avg(neighbours(gl_FragCoord.xy)).x > 0.0 ? randColor : vec4(0.0);
+    vec4 erosion = avg(neighbours(gl_FragCoord.xy)).x > 0.3 ? randColor : vec4(0.0);
+    vec4 eroded = ${common.getScreenTexel("gl_FragCoord")} + erosion;
 
     ${common.render({
       colors: ["midline", "eroded"],
