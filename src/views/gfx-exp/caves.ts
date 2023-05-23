@@ -50,7 +50,10 @@ void main() {
 
     ${common.render({
       colors: ["midline", "eroded"],
-      debugColors: ["debugColor(0, randColor)"],
+      debugColors: [
+        "debugColor(0, randColor)",
+        "debugColor(1, avg(neighbours(gl_FragCoord.xy)))",
+      ],
       vars: ["vec4(0.0)"],
     })}
 }
