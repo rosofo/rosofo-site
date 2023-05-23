@@ -45,13 +45,12 @@ void main() {
       "gl_FragCoord"
     )}.y == size.y / 2 ? vec4(1.0) : vec4(0.0);
     
-    vec4 eroded = avg(neighbours(gl_FragCoord.xy)).x > 0.0001 ? vec4(${common.rand(
-      "vec2(u_t, 10.0)"
-    )}) : vec4(0.0);
+    vec4 randColor = vec4(${common.rand("vec2(u_t, 10.0)")});
+    vec4 eroded = avg(neighbours(gl_FragCoord.xy)).x > 0.0001 ? randColor : vec4(0.0);
 
     ${common.render({
       colors: ["midline"],
-      debugColors: ["debugColor(0, vec4(0.0))"],
+      debugColors: ["debugColor(0, randColor)"],
       vars: ["vec4(0.0)"],
     })}
 }
