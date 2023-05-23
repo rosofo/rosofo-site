@@ -19,14 +19,14 @@ ${common.defs}
 
 vec4[8] neighbours(vec2 coord) {
     return vec4[8](
-        texture2D(u_texture, coord + vec2(-1.0, -1.0)),
-        texture2D(u_texture, coord + vec2(0.0, -1.0)),
-        texture2D(u_texture, coord + vec2(1.0, -1.0)),
-        texture2D(u_texture, coord + vec2(-1.0, 0.0)),
-        texture2D(u_texture, coord + vec2(1.0, 0.0)),
-        texture2D(u_texture, coord + vec2(-1.0, 1.0)),
-        texture2D(u_texture, coord + vec2(0.0, 1.0)),
-        texture2D(u_texture, coord + vec2(1.0, 1.0))
+        texelFetch(u_texture, coord + vec2(-1.0, -1.0), 0),
+        texelFetch(u_texture, coord + vec2(0.0, -1.0), 0),
+        texelFetch(u_texture, coord + vec2(1.0, -1.0), 0),
+        texelFetch(u_texture, coord + vec2(-1.0, 0.0), 0),
+        texelFetch(u_texture, coord + vec2(1.0, 0.0), 0),
+        texelFetch(u_texture, coord + vec2(-1.0, 1.0), 0),
+        texelFetch(u_texture, coord + vec2(0.0, 1.0), 0),
+        texelFetch(u_texture, coord + vec2(1.0, 1.0), 0)
     );
 }
 
