@@ -23,6 +23,10 @@ void main() {
     vec4 midline = ${common.texelCoord(
       "gl_FragCoord"
     )}.y == size.y / 2 ? vec4(1.0) : vec4(0.0);
+    
+    vec4 eroded = avg(neighbours(gl_FragCoord)) > 0.5 ? vec4(${common.rand(
+      "vec2(u_t, 10.0)"
+    )}) : vec4(0.0);
 
     ${common.render({
       colors: ["midline"],
