@@ -17,6 +17,19 @@ uniform float u_t;
 
 ${common.defs}
 
+vec4[8] neighbours(vec2 coord) {
+    return vec4[8](
+        texture2D(u_texture, coord + vec2(-1.0, -1.0)),
+        texture2D(u_texture, coord + vec2(0.0, -1.0)),
+        texture2D(u_texture, coord + vec2(1.0, -1.0)),
+        texture2D(u_texture, coord + vec2(-1.0, 0.0)),
+        texture2D(u_texture, coord + vec2(1.0, 0.0)),
+        texture2D(u_texture, coord + vec2(-1.0, 1.0)),
+        texture2D(u_texture, coord + vec2(0.0, 1.0)),
+        texture2D(u_texture, coord + vec2(1.0, 1.0))
+    );
+}
+
 void main() {
     ivec2 size = textureSize(u_texture, 0);
     
@@ -24,7 +37,7 @@ void main() {
       "gl_FragCoord"
     )}.y == size.y / 2 ? vec4(1.0) : vec4(0.0);
     
-    vec4 eroded = avg(neighbours(gl_FragCoord)) > 0.5 ? vec4(${common.rand(
+    vec4 eroded = avg(neighbours(gl_FragCoord.xy)) > 0.5 ? vec4(${common.rand(
       "vec2(u_t, 10.0)"
     )}) : vec4(0.0);
 
