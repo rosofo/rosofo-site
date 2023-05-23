@@ -13,6 +13,7 @@ precision highp float;
 #define PI 3.1415926535897932384626433832795
 
 uniform sampler2D u_texture;
+uniform float u_t;
 
 ${common.defs}
 
@@ -58,8 +59,8 @@ export class GfxCaves extends LitElement {
     window.removeEventListener("pointermove", this.onPointerMove.bind(this));
   }
 
-  x = 0;
-  time = 0;
+  t = 0;
+  step = 0.01;
 
   render() {
     return html`
@@ -68,30 +69,13 @@ export class GfxCaves extends LitElement {
         textureHeight=${HEIGHT}
         frag=${frag}
         .uniforms=${{
-          u_x: { value: this.x },
-          u_time: { value: this.x },
-          u_p1: { value: [WIDTH / 2, HEIGHT / 2] },
-          u_mouse: { value: this.pointer },
+          u_t: { value: this.t },
         }}
         .beforeFrame=${(ctx) => {
-          ctx.uniforms.u_x.value = this.x;
-          ctx.uniforms.u_time.value = this.x;
-          ctx.uniforms.u_mouse.valoue = this.pointer;
+          ctx.uniforms.u_t.value = this.t += this.step;
         }}
       ></shader-plane>
-      <input
-        type="range"
-        min="0"
-        max="1"
-        step="0.01"
-        @input=${(event: InputEvent) => {
-          this.moveX(event.currentTarget?.value);
-        }}
-      />
+      <input type="range" min="0" max="1" step="0.01" />
     `;
-  }
-
-  moveX(value: number | null) {
-    this.x = value ?? 0;
   }
 }
