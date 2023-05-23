@@ -20,11 +20,12 @@ ${common.defs}
 void main() {
     ivec2 size = textureSize(u_texture, 0);
     
-    vec4 bw = mod(floor(gl_FragCoord.x), 2.0) == 0.0 ? vec4(sin(gl_FragCoord.x)) : vec4(0.0);
-    vec4 wb = mod(floor(gl_FragCoord.y), 2.0) == 0.0 ? vec4(cos(gl_FragCoord.y)) : vec4(0.0);
+    vec4 midline = ${common.texelCoord(
+      "gl_FragCoord"
+    )}.y == size.y / 2 ? vec4(1.0) : vec4(0.0);
 
     ${common.render({
-      colors: ["bw", "wb"],
+      colors: ["midline"],
       debugColors: ["debugColor(0, vec4(0.0))"],
       vars: ["vec4(0.0)"],
     })}
