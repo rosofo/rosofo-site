@@ -49,7 +49,7 @@ void main() {
     vec4 eroded = avg(neighbours(gl_FragCoord.xy)).x > 0.0001 ? randColor : vec4(0.0);
 
     ${common.render({
-      colors: ["midline"],
+      colors: ["midline", "eroded"],
       debugColors: ["debugColor(0, randColor)"],
       vars: ["vec4(0.0)"],
     })}
