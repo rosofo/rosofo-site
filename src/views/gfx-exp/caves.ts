@@ -45,11 +45,11 @@ void main() {
       "gl_FragCoord"
     )}.y == size.y / 2 ? vec4(1.0) : vec4(0.0);
     
-    vec4 a = ${common.getScreenTexel("gl_FragCoord")};
+    vec4 a = vec4(${common.getScreenTexel("gl_FragCoord")}.xyz, 1.0);
     vec4[8] neighbours = neighbours(gl_FragCoord.xy);
     for (int i = 0; i < 8; i++) {
       if (length(neighbours[i]) > 0.5) {
-        a = vec4(0.0, 0.0, 0.2);
+        a += vec4(0.0, 0.0, 0.2, 0.0);
       }
     }
 
