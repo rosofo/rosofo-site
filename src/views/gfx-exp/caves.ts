@@ -58,7 +58,7 @@ void main() {
 
     }
     if (sum >= 8.0) {
-      a -= vec4(0.2, 0.2, 0.2, 0.0);
+      a -= vec4(a.xyz, 0.0) / 2.0;
     }
 
     ${common.render({
