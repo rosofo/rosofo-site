@@ -57,6 +57,9 @@ void main() {
       }
 
     }
+    if (neighbours[0].x + neighbours[7].x + neighbours[1].x > neighbours[5].x + neighbours[6].x + neighbours[2].x) {
+      a = vec4(0.0, 0.0, 0.0, 1.0);
+    }
     if (sum >= 8.0) {
       a -= vec4(a.xyz, 0.0) / 2.0;
     }
