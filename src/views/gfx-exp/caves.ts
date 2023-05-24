@@ -49,7 +49,7 @@ void main() {
     vec4[8] neighbours = neighbours(gl_FragCoord.xy);
     for (int i = 0; i < 8; i++) {
       if (length(neighbours[i]) > 0.5) {
-        a += vec4(0.1);
+        a = vec4(0.0, 0.0, 0.2);
       }
     }
 
