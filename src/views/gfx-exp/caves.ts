@@ -45,19 +45,17 @@ void main() {
       "gl_FragCoord"
     )}.y == size.y / 2 ? vec4(1.0) : vec4(0.0);
     
-    vec4 randColor = vec4(${common.rand("vec2(u_t, gl_FragCoord.x)")});
-    vec4 erosion = avg(neighbours(gl_FragCoord.xy)).x > 0.374 ? randColor : vec4(0.0);
-    float hardness = sin(gl_FragCoord.y) * 10.0 + 5.0;
-    vec4 eroded = ${common.getScreenTexel(
-      "gl_FragCoord"
-    )} + (erosion / hardness);
+    vec4 a;
+    vec4[8] neighbours = neighbours(gl_FragCoord.xy);
+    for (int i = 0; i < 8; i++) {
+      if (length(neighbours[i]) > 0.5) {
+        a += vec4(0.1);
+      }
+    }
 
     ${common.render({
-      colors: ["midline", "eroded"],
-      debugColors: [
-        "debugColor(0, randColor)",
-        "debugColor(1, avg(neighbours(gl_FragCoord.xy)))",
-      ],
+      colors: ["midline", "a"],
+      debugColors: ["vec4(0.0)"],
       vars: ["vec4(0.0)"],
     })}
 }
