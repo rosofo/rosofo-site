@@ -51,14 +51,14 @@ void main() {
     for (int i = 0; i < 8; i++) {
       sum += length(neighbours[i].xyz);
       if (length(neighbours[i].xyz) > 1.0) {
-        a += vec4(0.0, 0.0, 0.001, 0.0);
+        a += vec4(0.0, 0.0, 0.005, 0.0);
       } else if (length(neighbours[i].z) > 0.5) {
         a += vec4(0.02, 0.0, -0.001, 0.0);
       }
 
     }
     if (sum >= 8.0) {
-      a = vec4(0.0, 0.0, 0.0, 1.0);
+      a -= vec4(0.2, 0.2, 0.2, 0.0);
     }
 
     ${common.render({
