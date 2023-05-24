@@ -54,9 +54,9 @@ void main() {
         a += vec4(0.02, 0.0, -0.001, 0.0);
       }
 
-      if (length(neighbours[i].xyz) > 1.2) {
-        a = vec4(0.0, 0.0, 0.0, 1.0);
-      }
+    }
+    if (length(avg(neighbours)) > 1.0) {
+      a = vec4(0.0, 0.0, 0.0, 1.0);
     }
 
     ${common.render({
