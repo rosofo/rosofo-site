@@ -51,7 +51,7 @@ void main() {
       if (length(neighbours[i].xyz) > 1.0) {
         a += vec4(0.0, 0.0, 0.001, 0.0);
       } else if (length(neighbours[i].z) > 0.5) {
-        a += vec4(0.0, 0.0, 0.001, 0.0);
+        a += vec4(0.02, 0.0, -0.001, 0.0);
       }
     }
 
