@@ -48,7 +48,9 @@ void main() {
     vec4 a = vec4(${common.getScreenTexel("gl_FragCoord")}.xyz, 1.0);
     vec4[8] neighbours = neighbours(gl_FragCoord.xy);
     for (int i = 0; i < 8; i++) {
-      if (length(neighbours[i].xyz) > 0.5) {
+      if (length(neighbours[i].xyz) > 1.0) {
+        a += vec4(0.0, 0.0, 0.001, 0.0);
+      } else if (length(neighbours[i].z) > 0.5) {
         a += vec4(0.0, 0.0, 0.001, 0.0);
       }
     }
