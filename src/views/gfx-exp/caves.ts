@@ -53,6 +53,10 @@ void main() {
       } else if (length(neighbours[i].z) > 0.5) {
         a += vec4(0.02, 0.0, -0.001, 0.0);
       }
+
+      if (length(neighbours[i].xyz) > 2.0) {
+        a = vec4(0.0, 0.0, 0.0, 1.0);
+      }
     }
 
     ${common.render({
