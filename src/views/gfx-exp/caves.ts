@@ -47,7 +47,7 @@ void main() {
     
     vec4 randColor = vec4(${common.rand("vec2(u_t, gl_FragCoord.x)")});
     vec4 erosion = avg(neighbours(gl_FragCoord.xy)).x > 0.374 ? randColor : vec4(0.0);
-    float hardness = sin(gl_FragCoord.x) * 10.0;
+    float hardness = sin(gl_FragCoord.y) * 10.0 + 5.0;
     vec4 eroded = ${common.getScreenTexel(
       "gl_FragCoord"
     )} + (erosion / hardness);
