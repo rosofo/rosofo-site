@@ -47,6 +47,9 @@ void main() {
     
     vec4 a = vec4(${common.getScreenTexel("gl_FragCoord")}.xyz, 1.0);
     vec4[8] neighbours = neighbours(gl_FragCoord.xy);
+    if (neighbours[1] == vec4(1.0) || neighbours[6] == vec4(1.0)) {
+      a = vec4(0.5, 0.0, 0.5, 1.0);
+    }
     float sum = 0.0;
     for (int i = 0; i < 8; i++) {
       sum += length(neighbours[i].xyz);
