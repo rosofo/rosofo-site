@@ -43,11 +43,8 @@ class Sim {
   renderer: THREE.WebGLRenderer;
   scene: THREE.Scene;
   camera: THREE.OrthographicCamera;
-  material: THREE.ShaderMaterial;
-  plane: THREE.Mesh;
   t = 0;
   step = 0.01;
-  uniforms: Record<string, THREE.IUniform> = {};
 
   constructor(
     renderer: THREE.WebGLRenderer,
@@ -57,14 +54,6 @@ class Sim {
     this.renderer = renderer;
     this.scene = scene;
     this.camera = camera;
-    const data = new Uint8Array(WIDTH * HEIGHT * 4);
-    const texture = new THREE.DataTexture(data, WIDTH, HEIGHT);
-    this.material = new THREE.ShaderMaterial({
-      fragmentShader: frag,
-      uniforms: { u_texture: { value: texture }, ...this.uniforms },
-    });
-    this.plane = new THREE.Mesh(new THREE.PlaneGeometry(), this.material);
-    this.scene.add(this.plane);
   }
 
   start() {
@@ -73,6 +62,5 @@ class Sim {
 
   render() {
     this.renderer.render(this.scene, this.camera);
-    this.material.uniforms.u_t.value = this.t += this.step;
   }
 }
