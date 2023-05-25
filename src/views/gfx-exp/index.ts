@@ -27,6 +27,14 @@ export const views: Route[] = [
       await import("./caves");
     },
   },
+  {
+    path: "phys-w",
+    component: "phys-w",
+    name: "phys-w",
+    action: async () => {
+      await import("./phys-w");
+    },
+  },
 ];
 
 @customElement("gfx-exp")
