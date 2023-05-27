@@ -1,5 +1,11 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
   "title": "web components with lit",
-  "steps": []
+  "steps": [
+    {
+      "file": "src/views/maro-market/index.ts",
+      "description": "Your web component is a class decorated with `customElement`",
+      "line": 38
+    }
+  ]
 }
