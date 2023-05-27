@@ -11,6 +11,11 @@
       "file": "src/views/maro-market/index.ts",
       "description": "It has a `render` method which returns templated html.",
       "line": 78
+    },
+    {
+      "file": "src/views/maro-market/index.ts",
+      "description": "`h-title` is also a web component. They are used just like any other html tag.",
+      "line": 80
     }
   ]
 }
