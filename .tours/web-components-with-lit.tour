@@ -6,6 +6,11 @@
       "file": "src/views/maro-market/index.ts",
       "description": "Your web component is a class decorated with `customElement`",
       "line": 38
+    },
+    {
+      "file": "src/views/maro-market/index.ts",
+      "description": "It has a `render` method which returns templated html.",
+      "line": 78
     }
   ]
 }
